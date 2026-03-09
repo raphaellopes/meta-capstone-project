@@ -8,7 +8,6 @@
 }
 
 #root {
-  max-width: 1280px;
   margin: 0 auto;
   font-family: "Karla", sans-serif;
   font-style: normal;
@@ -22,10 +21,53 @@ ul, li {
   margin: 0;
 }
 
+h1, h2, h3, h4, h5, h6 {
+  margin: 0;
+}
+
+p {
+  margin: 0;
+}
+
+img {
+  max-width: 100%;
+}
+
+h1 {
+  font-family: "Markazi Text", serif;
+  font-optical-sizing: auto;
+  font-weight: 500;
+  font-style: normal;
+  font-size: 64px;
+}
+
+button {
+  border: none;
+  background-color: var(--primary-highlight);
+  color: var(--primary-base);
+  text-transform: uppercase;
+  font-weight: 800;
+  padding: 0.8rem 1.5rem;
+  border-radius: 16px;
+}
+
+button:hover {
+  background-color: var(--secondary-warm);
+  border: none;
+}
+
 .container {
   max-width: 1024px;
   margin: 0 auto;
   padding: 0 1rem;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(1fr, 1fr));
+  gap: 2rem;
+  align-items: center;
+  justify-items: center;
 }
 
 #header {
@@ -48,18 +90,68 @@ ul, li {
   text-decoration: underline;
 }
 
+/** hero section */
+#hero {
+  background-color: var(--primary-base);
+  padding: 0.5rem 0;
+}
+
+#hero > .container {
+  position: relative;
+}
+
+#hero > .container > div {
+  flex: 1;
+  
+} 
+.hero-content {
+  width: 320px;
+}
+
+.hero-content p {
+  color: var(--seconday-light);
+  font-size: 18px;
+  max-width: 320px;
+}
+
+.hero-content button {
+  margin-top: 2rem;
+}
+
+#hero h1 {
+  color: var(--primary-highlight);
+  line-height: 2rem;
+  margin-top: 1.5rem;
+}
+
+#hero h2 {
+  color: var(--seconday-light);
+  font-family: "Markazi Text", serif;
+  font-optical-sizing: auto;
+  font-weight: 300;
+  font-style: normal;
+  font-size: 40px;
+}
+
+.hero-img-wrapper {
+  overflow: hidden;
+  border-radius: 16px;
+  height: 200px;
+  margin-top: 2rem;
+}
+
+.hero-img-wrapper > img {
+  object-fit: cover;
+  object-position: center;
+  height: 100%;
+  width: 100%;
+}
+
 /** specials */
 .special-wrap-img > img {
   max-width: 100%;
 }
 
-.grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(1fr, 1fr));
-  gap: 2rem;
-  align-items: center;
-  justify-items: center;
-}
 
 @media (min-width: 768px) {
   .grid {
@@ -75,11 +167,6 @@ ul, li {
     flex: 1;
   }
 
-  #hero > .container {
-    display: flex;
-    align-items: center;
-  }
-
   #about > .container {
     display: flex;
     align-items: center;
@@ -88,5 +175,21 @@ ul, li {
   #header nav ul {
     display: flex;
     gap: 2rem;
+  }
+
+  #hero {
+    padding: 1rem 0;
+  }
+
+  #hero > .container {
+    display: flex;
+    align-items: center;
+    height: 320px;
+  }
+
+  .hero-img-wrapper {
+    width: 550px;
+    height: 380px;
+    margin-top: 6rem;
   }
 }
