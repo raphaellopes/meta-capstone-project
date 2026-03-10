@@ -1,3 +1,5 @@
+import './styles.css';
+
 const AboutSection = () => (
   <section id="about">
     <div className="container">

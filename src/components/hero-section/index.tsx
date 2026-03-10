@@ -1,4 +1,5 @@
-import RestaurantFood from "../assets/restaurant-food.jpg";
+import './styles.css';
+import RestaurantFood from "@assets/restaurant-food.jpg";
 
 const HeroSection = () => (
   <section id="hero">

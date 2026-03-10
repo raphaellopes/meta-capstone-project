@@ -1,0 +1,59 @@
+#specials {
+  padding: 2rem 0;
+}
+
+#specials h1 {
+  color: var(--seconday-dark);
+}
+
+.special-header {
+  margin-bottom: 2rem;
+}
+
+.special-wrap-img > img {
+  max-width: 100%;
+}
+
+.special-card {
+  background-color: var(--seconday-light);
+  border-radius: var(--border-radius-base);
+}
+
+.special-card-content {
+  padding: 1rem;
+}
+
+.special-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: var(--font-size-md);
+  margin-bottom: 1rem;
+}
+
+.special-card-title {
+  color: var(--seconday-dark);
+  font-weight: var(--font-primary-weight-bold);
+}
+
+.special-card-price {
+  color: var(--secondary-warm);
+  font-weight: var(--font-primary-weight-bold);
+}
+
+.special-card-description {
+  color: var(--primary-base);
+}
+
+
+@media (min-width: 768px) {
+  #specials {
+    padding: 5rem 0;
+  }
+
+  .special-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+}

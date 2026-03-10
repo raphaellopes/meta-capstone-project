@@ -1,5 +1,6 @@
-import Nav from "./Nav";
-import Logo from "../assets/logo.svg";
+import './styles.css';
+import Logo from "@assets/logo.svg";
+import Nav from "@components/nav";
 
 const Header = () => (
   <header id="header">

@@ -1,5 +1,6 @@
-import Logo from "../assets/logo.svg";
-import Nav from "./Nav";
+import './styles.css';
+import Logo from "@assets/logo.svg";
+import Nav from "@components/nav";
 
 const Footer = () => (
   <footer id="footer">

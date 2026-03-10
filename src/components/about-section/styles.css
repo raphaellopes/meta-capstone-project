@@ -1,0 +1,6 @@
+@media (min-width: 768px) {
+  #about > .container {
+    display: flex;
+    align-items: center;
+  }
+}

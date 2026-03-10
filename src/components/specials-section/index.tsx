@@ -1,5 +1,6 @@
-import GreekSaladImg from "../assets/greek-salad.jpg";
-import LemonDessertImg from "../assets/lemon-dessert.jpg";
+import './styles.css';
+import GreekSaladImg from "@assets/greek-salad.jpg";
+import LemonDessertImg from "@assets/lemon-dessert.jpg";
 
 const specials = [
   {
@@ -29,7 +30,7 @@ const SpecialsSection = () => (
   <section id="specials">
     <div className="container" >
       <header className="special-header">
-        <h2 className="special-header-title">This week specials</h2>
+        <h1 className="special-header-title">This week specials</h1>
         <button>Online Menu</button>
       </header>
       <div className="special-cards grid">
@@ -38,11 +39,13 @@ const SpecialsSection = () => (
             <div className="special-wrap-img">
               <img src={special.image} alt={special.title} />
             </div>
-            <div className="special-header">
-              <h3 className="special-title">{special.title}</h3>
-              <p className="special-price">{special.price}</p>
+            <div className="special-card-content">
+              <div className="special-card-header">
+                <h3 className="special-card-title">{special.title}</h3>
+                <p className="special-card-price">{special.price}</p>
+              </div>
+              <p className="special-card-description">{special.description}</p>
             </div>
-            <p className="special-description">{special.description}</p>
           </article>
         ))}
       </div>

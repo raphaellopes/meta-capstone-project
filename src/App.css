@@ -1,18 +1,44 @@
 :root {
+  /** colors */
   --primary-highlight: #F4CE14;
   --primary-base: #495E57;
   --secondary-warm: #EE9972;
   --seconday-warm-light: #FBDABB;
   --seconday-light: #EDEFEE;
   --seconday-dark: #333333;
+
+  /** fonts */
+  --font-primary: "Karla", sans-serif;
+  --font-primary-weight-regular: 500;
+  --font-primary-weight-bold: 600;
+  --font-primary-weight-extra-bold: 800;
+
+  --font-secondary: "Markazi Text", serif;
+  --font-secondary-weight-regular: 300;
+  --font-secondary-weight-medium: 500;
+
+
+  /** sizes */
+  --font-size-base: 16px;
+  --font-size-md: 18px;
+  --font-size-lg: 20px;
+  --font-size-xl: 40px;
+  --font-size-xxl: 64px;
+
+  --border-radius-base: 16px;
 }
 
 #root {
   margin: 0 auto;
-  font-family: "Karla", sans-serif;
+  font-family: var(--font-primary);
+  font-weight: var(--font-primary-weight-regular);
   font-style: normal;
   font-optical-sizing: auto;
-  font-weight: 500;
+  font-size: var(--font-size-base);
+}
+
+* {
+  box-sizing: border-box;
 }
 
 ul, li {
@@ -34,11 +60,11 @@ img {
 }
 
 h1 {
-  font-family: "Markazi Text", serif;
+  font-family: var(--font-secondary);
   font-optical-sizing: auto;
-  font-weight: 500;
+  font-weight: var(--font-secondary-weight-medium);
   font-style: normal;
-  font-size: 64px;
+  font-size: var(--font-size-xxl);
 }
 
 button {
@@ -46,9 +72,9 @@ button {
   background-color: var(--primary-highlight);
   color: var(--primary-base);
   text-transform: uppercase;
-  font-weight: 800;
+  font-weight: var(--font-primary-weight-extra-bold);
   padding: 0.8rem 1.5rem;
-  border-radius: 16px;
+  border-radius: var(--border-radius-base);
 }
 
 button:hover {
@@ -70,126 +96,8 @@ button:hover {
   justify-items: center;
 }
 
-#header {
-  padding: 2rem 0;
-}
-
-#header > .container {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-#header nav a {
-  font-weight: 800;
-  color: var(--seconday-dark);
-}
-
-#header nav a:hover {
-  color: var(--primary-highlight);
-  text-decoration: underline;
-}
-
-/** hero section */
-#hero {
-  background-color: var(--primary-base);
-  padding: 0.5rem 0;
-}
-
-#hero > .container {
-  position: relative;
-}
-
-#hero > .container > div {
-  flex: 1;
-  
-} 
-.hero-content {
-  width: 320px;
-}
-
-.hero-content p {
-  color: var(--seconday-light);
-  font-size: 18px;
-  max-width: 320px;
-}
-
-.hero-content button {
-  margin-top: 2rem;
-}
-
-#hero h1 {
-  color: var(--primary-highlight);
-  line-height: 2rem;
-  margin-top: 1.5rem;
-}
-
-#hero h2 {
-  color: var(--seconday-light);
-  font-family: "Markazi Text", serif;
-  font-optical-sizing: auto;
-  font-weight: 300;
-  font-style: normal;
-  font-size: 40px;
-}
-
-.hero-img-wrapper {
-  overflow: hidden;
-  border-radius: 16px;
-  height: 200px;
-  margin-top: 2rem;
-}
-
-.hero-img-wrapper > img {
-  object-fit: cover;
-  object-position: center;
-  height: 100%;
-  width: 100%;
-}
-
-/** specials */
-.special-wrap-img > img {
-  max-width: 100%;
-}
-
-
 @media (min-width: 768px) {
   .grid {
     grid-template-columns: repeat(3, minmax(250px, 1fr));
-  }
-
-  #footer > .container {
-    display: flex;
-    align-items: center
-  }
-
-  .footer-content {
-    flex: 1;
-  }
-
-  #about > .container {
-    display: flex;
-    align-items: center;
-  }
-
-  #header nav ul {
-    display: flex;
-    gap: 2rem;
-  }
-
-  #hero {
-    padding: 1rem 0;
-  }
-
-  #hero > .container {
-    display: flex;
-    align-items: center;
-    height: 320px;
-  }
-
-  .hero-img-wrapper {
-    width: 550px;
-    height: 380px;
-    margin-top: 6rem;
   }
 }
