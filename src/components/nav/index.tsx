@@ -1,20 +1,20 @@
 const Nav = () => (
-  <nav>
-    <ul>
-      <li>
-        <a href="#" title="Link to home page">Home</a>
+  <nav className="nav">
+    <ul className="nav-list">
+      <li className="nav-item">
+        <a className="nav-link" href="#" title="Link to home page">Home</a>
       </li>
-      <li>
-        <a href="/about" title="Link to about page">About</a>
+      <li className="nav-item">
+        <a className="nav-link" href="/about" title="Link to about page">About</a>
       </li>
-      <li>
-        <a href="/reservations" title="Link to reservations page">Reservations</a>
+      <li className="nav-item">
+        <a className="nav-link" href="/reservations" title="Link to reservations page">Reservations</a>
       </li>
-      <li>
-        <a href="/order-online" title="Link to order online page">Order online</a>
+      <li className="nav-item">
+        <a className="nav-link" href="/order-online" title="Link to order online page">Order online</a>
       </li>
-      <li>
-        <a href="/login" title="Link to login page">Login</a>
+      <li className="nav-item">
+        <a className="nav-link" href="/login" title="Link to login page">Login</a>
       </li>
     </ul>
   </nav>
