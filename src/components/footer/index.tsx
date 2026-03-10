@@ -15,7 +15,7 @@ const Footer = () => (
         </div>
         <div className="footer-content-wrapper">
           <h4>Contact Info</h4>
-          <div>
+          <div className='footer-content-box'>
             <p>Some fake address</p>
             <p>(123) 456-7890</p>
             <p>someemail@littlelemon.com</p>
@@ -23,7 +23,7 @@ const Footer = () => (
         </div>
         <div className="footer-content-wrapper">
           <h4>Social Media</h4>
-          <div>
+          <div className="footer-content-box">
             <p>Facebook</p>
             <p>Twitter</p>
             <p>Instagram</p>

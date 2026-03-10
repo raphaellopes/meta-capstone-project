@@ -21,15 +21,22 @@
   gap: 0.5rem
 }
 
-#footer .nav-list {
+#footer .nav-list,
+#footer .footer-content-box {
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
 }
 
-#footer .nav-link {
+#footer a,
+#footer p {
   color: var(--primary-base);
   font-weight: var(--font-primary-weight-regular);
+}
+
+#footer a:hover {
+  color: var(--secondary-warm);
+  text-decoration: underline;
 }
 
 @media (min-width: 768px) {
