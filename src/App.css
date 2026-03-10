@@ -9,7 +9,7 @@
 
   /** fonts */
   --font-primary: "Karla", sans-serif;
-  --font-primary-weight-regular: 500;
+  --font-primary-weight-regular: 300;
   --font-primary-weight-bold: 600;
   --font-primary-weight-extra-bold: 800;
 
@@ -60,6 +60,14 @@ img {
 }
 
 h1 {
+  font-family: var(--font-secondary);
+  font-optical-sizing: auto;
+  font-weight: var(--font-secondary-weight-medium);
+  font-style: normal;
+  font-size: var(--font-size-xxl);
+}
+
+h2 {
   font-family: var(--font-secondary);
   font-optical-sizing: auto;
   font-weight: var(--font-secondary-weight-medium);

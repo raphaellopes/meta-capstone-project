@@ -1,23 +1,46 @@
+import './styles.css';
+import SophiaImg from '@assets/sophia-avatar.png';
+import TomazImg from '@assets/tomaz-avatar.png';
+import AmandaImg from '@assets/amanda-avatar.png';
+import StarFilledIcon from '@components/icons/star-filled';
+import Avatar from '@components/avatar';
+
 const testimonials = [
   {
     rate: 5,
-    name: 'John Doe',
+    name: 'Sophia Martinez',
     quote: 'This place is amazing!',
+    image: SophiaImg,
   },
   {
     rate: 5,
-    name: 'Jane Doe',
+    name: 'Tomaz Xavier',
     quote: 'Very good food and service',
+    image: TomazImg,
   },
   { 
     rate: 5,
-    name: 'Sophia Martinez',
+    name: 'Amanda Gabriela',
     quote: 'The best place in town',
+    image: AmandaImg,
   }
 ];
 
+interface RateProps {
+  id: string;
+  rate: number;
+}
+
+const Rate:React.FC<RateProps> = ({ id, rate }) => (
+  <div className="rate">
+    {Array.from({ length: rate }, (_, i) => i).map((i) => (
+      <StarFilledIcon key={`${id}-${i}`} />
+    ))}
+  </div>
+);
+
 const TestimonialsSection = () => (
-  <section>
+  <section id="testimonials">
     <div className="container">
       <header>
         <h2>Testimonials</h2>
@@ -25,9 +48,9 @@ const TestimonialsSection = () => (
       <div className="testimonial-cards grid">
         {testimonials.map((testimonial) => (
           <article className="testimonial-card" key={testimonial.name}>
-            <div className="testimonial-rate">{testimonial.rate}</div>
+            <Rate id={testimonial.name} rate={testimonial.rate} />
             <div className="testimonial-content">
-              <div className="testimonial-avatar-wrapper">add avatar</div>
+              <Avatar src={testimonial.image} alt={testimonial.name} />
               <p className="testimonial-name">{testimonial.name}</p>
             </div>
             <p className="testimonial-quote">{testimonial.quote}</p>
