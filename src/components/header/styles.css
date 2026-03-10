@@ -1,11 +1,32 @@
 #header {
-  padding: 2rem 0;
+  padding: 1rem 0;
 }
 
 #header > .container {
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+
+#header .header-content {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem
+}
+
+#header .mobile-button-toggle {
+  display: flex;
+  padding: 0.5rem 0.7rem;
+}
+
+#header .mobile-button-toggle > svg {
+  width: 24px;
+}
+
+#header .nav {
+  display: none;
 }
 
 #header nav a {
@@ -19,8 +40,24 @@
 }
 
 @media (min-width: 768px) {
+  #header {
+    padding: 2rem 0;
+  }
+
+  #header .nav {
+    display: block;
+  }
+
   #header nav ul {
     display: flex;
     gap: 2rem;
+  }
+
+  #header .header-content {
+    justify-content: space-between;
+  }
+  
+  #header .mobile-button-toggle {
+    display: none;
   }
 }
