@@ -1,14 +1,11 @@
-import AboutSection from "@components/about-section";
-import HeroSection from "@components/hero-section";
-import SpecialsSection from "@components/specials-section";
-import TestimonialsSection from "@components/testimonial-section";
+import { Routes, Route } from 'react-router-dom'
+import HomePage from '@pages/home';
 
 const Main = () => (
   <main>
-    <HeroSection />
-    <SpecialsSection />
-    <TestimonialsSection />
-    <AboutSection />
+    <Routes>
+      <Route path='/' element={<HomePage />} />
+    </Routes>
   </main>
 );
 
