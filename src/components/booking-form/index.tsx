@@ -1,8 +1,15 @@
 import styles from './styles.module.css';
 import { useState } from 'react';
 
-const BookingForm = () => {
-  const [availableTimes, setAvailableTimes] = useState(['17:00', '18:00', '19:00', '20:00', '21:00', '22:00']);
+export type AvailableTimesType = string[];
+export type OnDateChangeType = (date:string) => void;
+
+interface BookingFormProps {
+  availableTimes: AvailableTimesType;
+  onDateChange: OnDateChangeType;
+}
+
+const BookingForm:React.FC<BookingFormProps> = ({ availableTimes, onDateChange }) => {
   const [data, setData] = useState({
     date: '',
     time: '',
@@ -19,7 +26,7 @@ const BookingForm = () => {
     <form onSubmit={handleSubmit} className={styles.root}>
       <div>
         <label htmlFor="choose-date">Choose date:</label>
-        <input type="date" id="choose-date" name="choose-date" value={data.date} onChange={(e) => setData({ ...data, date: e.target.value })} />
+        <input type="date" id="choose-date" name="choose-date" value={data.date} onChange={(e) => onDateChange(e.target.value)} />
       </div>
       <div>
         <label htmlFor="choose-time">Choose time:</label>
