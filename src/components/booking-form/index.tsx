@@ -10,7 +10,7 @@ const BookingForm = () => {
     occasion: ''
   });
 
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = (event: React.SubmitEvent<HTMLFormElement>) => {
     event.preventDefault();
     console.log('handleSubmit >>>', data); 
   };
