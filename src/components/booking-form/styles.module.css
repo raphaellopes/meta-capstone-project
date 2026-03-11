@@ -1,0 +1,12 @@
+.root {
+  display: grid;
+  gap: 2rem;
+  padding: 1rem 0 5rem;
+}
+
+.root > div {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 0.25rem; 
+}
