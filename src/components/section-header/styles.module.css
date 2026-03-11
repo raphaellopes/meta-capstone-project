@@ -1,0 +1,44 @@
+.root {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  line-height: 3rem;
+}
+
+.title,
+.subtitle {
+  font-family: var(--font-secondary);
+  font-optical-sizing: auto;
+  font-weight: var(--font-secondary-weight-medium);
+  font-style: normal;
+}
+
+.title {
+  font-size: var(--font-size-xxl);
+}
+
+.subtitle {
+  font-size: var(--font-size-xl);
+}
+
+.title-default,
+.subtitle-default {
+  color: var(--seconday-dark);
+}
+
+.title-primary-base {
+  color: var(--primary-base);
+}
+
+.title-primary-highlight {
+  color: var(--primary-highlight);
+}
+
+.subtitle-primary-base {
+  color: var(--primary-base);
+}
+
+.subtitle-primary-highlight {
+  color: var(--primary-base);
+}

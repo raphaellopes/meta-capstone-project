@@ -8,20 +8,6 @@
   gap: 2rem;
 }
 
-
-#about .about-title {
-  color: var(--primary-highlight);
-  line-height: 2rem;
-  margin-top: 1rem;
-}
-
-#about .about-subtitle {
-  color: var(--primary-base);
-  font-size: var(--font-size-xl);
-  font-family: var(--font-secondary);
-  font-weight: var(--font-secondary-weight-medium);
-}
-
 #about .about-description {
   font-weight: var(--font-primary-weight-regular);
   font-size: var(--font-size-md);
@@ -35,6 +21,10 @@
 
 #about .about-img-top {
   display: none;
+}
+
+#about .about-box > header {
+  margin-bottom: 1rem;
 }
 
 @media (min-width: 360px) {

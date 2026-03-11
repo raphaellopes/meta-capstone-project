@@ -1,6 +1,7 @@
 import './styles.css';
 import GreekSaladImg from "@assets/greek-salad.jpg";
 import LemonDessertImg from "@assets/lemon-dessert.jpg";
+import SectionHeader from '@components/section-header';
 
 const specials = [
   {
@@ -29,10 +30,7 @@ const specials = [
 const SpecialsSection = () => (
   <section id="specials">
     <div className="container" >
-      <header className="special-header">
-        <h1 className="special-header-title">This week specials</h1>
-        <button>Online Menu</button>
-      </header>
+      <SectionHeader className="special-header" title="This week specials" right={<button>Online Menu</button>}/>
       <div className="special-cards grid">
         {specials.map((special) => (
           <article className="special-card" key={special.id}>

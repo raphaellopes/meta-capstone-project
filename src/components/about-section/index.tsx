@@ -1,13 +1,19 @@
 import './styles.css';
 import About1Img from '@assets/about-restaurant-a.png';
 import About2Img from '@assets/about-restaurant-b.png';
+import SectionHeader from '../section-header';
 
 const AboutSection = () => (
   <section id="about">
     <div className="container">
       <div className="about-box">
-        <h2 className="about-title">Little Lemon</h2>
-        <p className="about-subtitle">Chicago</p>
+        <SectionHeader 
+          title="Little Lemon" 
+          subtitle="Chicago"
+          variant="primary-highlight" 
+          titleAs="h2"
+          subtitleAs="h3"
+        />
         <p className="about-description">
           We are a family owned Mediterranean restaurant, focused on traditional recipes served with a modern twist.
           We are a family owned Mediterranean restaurant, focused on traditional recipes served with a modern twist.

@@ -4,6 +4,7 @@ import TomazImg from '@assets/tomaz-avatar.png';
 import AmandaImg from '@assets/amanda-avatar.png';
 import StarFilledIcon from '@components/icons/star-filled';
 import Avatar from '@components/avatar';
+import SectionHeader from '../section-header';
 
 const testimonials = [
   {
@@ -42,9 +43,7 @@ const Rate:React.FC<RateProps> = ({ id, rate }) => (
 const TestimonialsSection = () => (
   <section id="testimonials">
     <div className="container">
-      <header>
-        <h2>Testimonials</h2>
-      </header>
+      <SectionHeader title="Testimonials" variant="primary-base" titleAs="h2" />
       <div className="testimonial-cards grid">
         {testimonials.map((testimonial) => (
           <article className="testimonial-card" key={testimonial.name}>

@@ -50,10 +50,4 @@
   #specials {
     padding: 5rem 0;
   }
-
-  .special-header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
 }
