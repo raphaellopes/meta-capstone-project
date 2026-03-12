@@ -24,7 +24,7 @@ const BookingForm: React.FC<BookingFormProps> = ({
 }) => {
   const [data, setData] = useState<FormDataType>({
     date: new Date().toISOString().split("T")[0],
-    time: "",
+    time: availableTimes[0],
     guests: "",
     occasion: "",
   });
