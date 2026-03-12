@@ -1,5 +1,5 @@
-import styles from './styles.module.css';
-import { useState } from 'react';
+import styles from "./styles.module.css";
+import { useState } from "react";
 
 interface FormDataType {
   date: string;
@@ -8,8 +8,8 @@ interface FormDataType {
   occasion: string;
 }
 export type AvailableTimesType = string[];
-export type OnDateChangeType = (date:string) => void;
-export type OnSubmitType = (data:FormDataType) => void;
+export type OnDateChangeType = (date: string) => void;
+export type OnSubmitType = (data: FormDataType) => void;
 
 interface BookingFormProps {
   availableTimes: AvailableTimesType;
@@ -17,12 +17,16 @@ interface BookingFormProps {
   onSubmit: OnSubmitType;
 }
 
-const BookingForm:React.FC<BookingFormProps> = ({ availableTimes, onDateChange, onSubmit }) => {
+const BookingForm: React.FC<BookingFormProps> = ({
+  availableTimes,
+  onDateChange,
+  onSubmit,
+}) => {
   const [data, setData] = useState<FormDataType>({
-    date: '',
-    time: '',
-    guests: '',
-    occasion: ''
+    date: "",
+    time: "",
+    guests: "",
+    occasion: "",
   });
 
   const handleDateChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -33,14 +37,14 @@ const BookingForm:React.FC<BookingFormProps> = ({ availableTimes, onDateChange, 
 
   const handleSubmit = (event: React.SubmitEvent<HTMLFormElement>) => {
     event.preventDefault();
-    onSubmit(data); 
+    onSubmit(data);
   };
 
   return (
     <form onSubmit={handleSubmit} className={styles.root}>
       <div>
         <label htmlFor="choose-date">Choose date:</label>
-        <input 
+        <input
           type="date"
           id="choose-date"
           name="choose-date"
@@ -51,10 +55,10 @@ const BookingForm:React.FC<BookingFormProps> = ({ availableTimes, onDateChange, 
 
       <div>
         <label htmlFor="choose-time">Choose time:</label>
-        <select 
-          id="choose-time" 
-          name="choose-time" 
-          value={data.time} 
+        <select
+          id="choose-time"
+          name="choose-time"
+          value={data.time}
           onChange={(e) => setData({ ...data, time: e.target.value })}
         >
           {availableTimes.map((time) => (
@@ -67,23 +71,23 @@ const BookingForm:React.FC<BookingFormProps> = ({ availableTimes, onDateChange, 
 
       <div>
         <label htmlFor="guests">Number of guests:</label>
-        <input 
-          type="number" 
-          id="guests" 
-          name="guests" 
-          min="1" 
-          max="10" 
-          value={data.guests} 
+        <input
+          type="number"
+          id="guests"
+          name="guests"
+          min="1"
+          max="10"
+          value={data.guests}
           onChange={(e) => setData({ ...data, guests: e.target.value })}
         />
       </div>
 
       <div>
         <label htmlFor="occasion">Occasion:</label>
-        <select 
-          id="occasion" 
-          name="occasion" 
-          value={data.occasion} 
+        <select
+          id="occasion"
+          name="occasion"
+          value={data.occasion}
           onChange={(e) => setData({ ...data, occasion: e.target.value })}
         >
           <option value="Birthday">Birthday</option>

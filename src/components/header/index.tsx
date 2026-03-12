@@ -1,6 +1,6 @@
-import './styles.css';
+import "./styles.css";
 import Logo from "@assets/logo.svg";
-import HamburguerIcon from '@components/icons/hamburguer';
+import HamburguerIcon from "@components/icons/hamburguer";
 import Nav from "@components/nav";
 
 const Header = () => (

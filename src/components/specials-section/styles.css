@@ -45,7 +45,6 @@
   color: var(--primary-base);
 }
 
-
 @media (min-width: 768px) {
   #specials {
     padding: 5rem 0;

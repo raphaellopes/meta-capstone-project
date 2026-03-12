@@ -1,4 +1,4 @@
-import './styles.css';
+import "./styles.css";
 import Logo from "@assets/logo.svg";
 import Nav from "@components/nav";
 
@@ -15,7 +15,7 @@ const Footer = () => (
         </div>
         <div className="footer-content-wrapper">
           <h4>Contact Info</h4>
-          <div className='footer-content-box'>
+          <div className="footer-content-box">
             <p>Some fake address</p>
             <p>(123) 456-7890</p>
             <p>someemail@littlelemon.com</p>

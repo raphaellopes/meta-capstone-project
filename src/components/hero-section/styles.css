@@ -9,8 +9,7 @@
 
 #hero > .container > div {
   flex: 1;
-  
-} 
+}
 .hero-content {
   width: 320px;
 }
@@ -53,7 +52,6 @@
   height: 100%;
   width: 100%;
 }
-
 
 @media (min-width: 768px) {
   #hero {
