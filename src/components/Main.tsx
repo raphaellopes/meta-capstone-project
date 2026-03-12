@@ -1,18 +1,16 @@
 import { useReducer } from "react";
 import { Routes, Route } from "react-router-dom";
+import { fetchAPI } from "@lib/api";
 import HomePage from "@pages/home";
 import BookingPage from "@pages/booking";
 import { type AvailableTimesType } from "@components/booking-form";
 
 const Main = () => {
-  const initializeTimes = () => [
-    "17:00",
-    "18:00",
-    "19:00",
-    "20:00",
-    "21:00",
-    "22:00",
-  ];
+  const initializeTimes = () => {
+    const today = new Date();
+    const times = fetchAPI(today);
+    return times;
+  };
 
   const updateTimes = (
     state: AvailableTimesType,
@@ -20,8 +18,8 @@ const Main = () => {
   ) => {
     switch (action.type) {
       case "SET_AVAILABLE_TIMES":
-        console.log("payload >>>", action.payload);
-        return state;
+        const times = fetchAPI(new Date(action.payload));
+        return times;
       default:
         return state;
     }

@@ -1,7 +1,7 @@
 import styles from "./styles.module.css";
 import { useState } from "react";
 
-interface FormDataType {
+export interface FormDataType {
   date: string;
   time: string;
   guests: string;
@@ -23,7 +23,7 @@ const BookingForm: React.FC<BookingFormProps> = ({
   onSubmit,
 }) => {
   const [data, setData] = useState<FormDataType>({
-    date: "",
+    date: new Date().toISOString().split("T")[0],
     time: "",
     guests: "",
     occasion: "",
