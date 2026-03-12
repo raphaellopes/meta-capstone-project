@@ -5,7 +5,7 @@ import BookingPage from '@pages/booking';
 import { type AvailableTimesType } from '@components/booking-form';
 
 const Main = () => {
-  const initializeTimes = ['17:00', '18:00', '19:00', '20:00', '21:00', '22:00'];
+  const initializeTimes = () => ['17:00', '18:00', '19:00', '20:00', '21:00', '22:00'];
 
   const updateTimes = (state:AvailableTimesType, action:{ type:string, payload:string}) => {
     switch (action.type) {
@@ -17,7 +17,7 @@ const Main = () => {
     }
   }
 
-  const [availableTimes, dispatch] = useReducer(updateTimes, initializeTimes);
+  const [availableTimes, dispatch] = useReducer(updateTimes, initializeTimes());
 
   return (
     <main>
