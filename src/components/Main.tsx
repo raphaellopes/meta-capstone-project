@@ -1,11 +1,16 @@
 import { useReducer } from "react";
-import { Routes, Route } from "react-router-dom";
-import { fetchAPI } from "@lib/api";
+import { Routes, Route, useNavigate } from "react-router-dom";
+import { fetchAPI, submitAPI } from "@lib/api";
+import {
+  type AvailableTimesType,
+  type FormDataType,
+} from "@components/booking-form";
 import HomePage from "@pages/home";
 import BookingPage from "@pages/booking";
-import { type AvailableTimesType } from "@components/booking-form";
+import BookingConfirmationPage from "@pages/booking-confirmation";
 
 const Main = () => {
+  const navigate = useNavigate();
   const initializeTimes = () => {
     const today = new Date();
     const times = fetchAPI(today);
@@ -25,6 +30,13 @@ const Main = () => {
     }
   };
 
+  const handleSubmitBooking = (formData: FormDataType) => {
+    const success = submitAPI(formData);
+    if (success) {
+      navigate("/booking-confirmation");
+    }
+  };
+
   const [availableTimes, dispatch] = useReducer(updateTimes, initializeTimes());
 
   return (
@@ -39,8 +51,13 @@ const Main = () => {
               onDateChange={(date) =>
                 dispatch({ type: "SET_AVAILABLE_TIMES", payload: date })
               }
+              onSubmit={handleSubmitBooking}
             />
           }
+        />
+        <Route
+          path="/booking-confirmation"
+          element={<BookingConfirmationPage />}
         />
       </Routes>
     </main>

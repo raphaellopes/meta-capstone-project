@@ -11,7 +11,7 @@ export type AvailableTimesType = string[];
 export type OnDateChangeType = (date: string) => void;
 export type OnSubmitType = (data: FormDataType) => void;
 
-interface BookingFormProps {
+export interface BookingFormProps {
   availableTimes: AvailableTimesType;
   onDateChange: OnDateChangeType;
   onSubmit: OnSubmitType;
