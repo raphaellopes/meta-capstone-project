@@ -50,6 +50,7 @@ const BookingForm: React.FC<BookingFormProps> = ({
           name="choose-date"
           value={data.date}
           onChange={handleDateChange}
+          required
         />
       </div>
 
@@ -60,6 +61,7 @@ const BookingForm: React.FC<BookingFormProps> = ({
           name="choose-time"
           value={data.time}
           onChange={(e) => setData({ ...data, time: e.target.value })}
+          required
         >
           {availableTimes.map((time) => (
             <option key={time} value={time}>
@@ -79,6 +81,7 @@ const BookingForm: React.FC<BookingFormProps> = ({
           max="10"
           value={data.guests}
           onChange={(e) => setData({ ...data, guests: e.target.value })}
+          required
         />
       </div>
 
@@ -89,6 +92,7 @@ const BookingForm: React.FC<BookingFormProps> = ({
           name="occasion"
           value={data.occasion}
           onChange={(e) => setData({ ...data, occasion: e.target.value })}
+          required
         >
           <option value="Birthday">Birthday</option>
           <option value="Anniversary">Anniversary</option>
