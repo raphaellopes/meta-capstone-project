@@ -97,6 +97,10 @@ button:hover {
   border: none;
 }
 
+button:focus {
+  outline: 2px solid var(--primary-base);
+}
+
 .container {
   max-width: 1024px;
   margin: 0 auto;
@@ -117,6 +121,21 @@ select {
   padding: 1rem;
   border-radius: var(--border-radius-sm);
   border: 1px solid var(--primary-highlight);
+}
+
+input:focus,
+select:focus {
+  outline: 2px solid var(--primary-highlight);
+}
+
+input.input-error,
+select.select-error {
+  border-color: var(--seconday-error);
+}
+
+input.input-error:focus,
+select.select-error:focus {
+  outline: 2px solid var(--seconday-error);
 }
 
 @media (min-width: 768px) {

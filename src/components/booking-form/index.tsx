@@ -48,6 +48,13 @@ const BookingForm: React.FC<BookingFormProps> = ({
       },
     });
 
+  const isInputInvalid = (field: string) => {
+    return (
+      touched[field as keyof FormDataType] &&
+      errors[field as keyof FormDataType]
+    );
+  };
+
   useEffect(() => {
     if (values.date) {
       onDateChange(values.date);
@@ -62,10 +69,11 @@ const BookingForm: React.FC<BookingFormProps> = ({
           type="date"
           id="choose-date"
           aria-label="Choose date"
+          className={isInputInvalid("date") ? "input-error" : ""}
           {...getFieldProps("date")}
         />
-        {touched.date && errors.date && (
-          <ErrorFormField message={errors.date} />
+        {isInputInvalid("date") && (
+          <ErrorFormField message={errors.date || ""} />
         )}
       </div>
 
@@ -74,6 +82,7 @@ const BookingForm: React.FC<BookingFormProps> = ({
         <select
           id="choose-time"
           aria-label="Choose time"
+          className={isInputInvalid("time") ? "select-error" : ""}
           {...getFieldProps("time")}
         >
           {availableTimes.map((time) => (
@@ -82,8 +91,8 @@ const BookingForm: React.FC<BookingFormProps> = ({
             </option>
           ))}
         </select>
-        {touched.time && errors.time && (
-          <ErrorFormField message={errors.time} />
+        {isInputInvalid("time") && (
+          <ErrorFormField message={errors.time || ""} />
         )}
       </div>
 
@@ -95,10 +104,11 @@ const BookingForm: React.FC<BookingFormProps> = ({
           min="1"
           max="10"
           aria-label="Number of guests"
+          className={isInputInvalid("guests") ? "input-error" : ""}
           {...getFieldProps("guests")}
         />
-        {touched.guests && errors.guests && (
-          <ErrorFormField message={errors.guests} />
+        {isInputInvalid("guests") && (
+          <ErrorFormField message={errors.guests || ""} />
         )}
       </div>
 
@@ -107,13 +117,14 @@ const BookingForm: React.FC<BookingFormProps> = ({
         <select
           id="occasion"
           aria-label="Occasion"
+          className={isInputInvalid("occasion") ? "select-error" : ""}
           {...getFieldProps("occasion")}
         >
           <option value="birthday">Birthday</option>
           <option value="anniversary">Anniversary</option>
         </select>
-        {touched.occasion && errors.occasion && (
-          <ErrorFormField message={errors.occasion} />
+        {isInputInvalid("occasion") && (
+          <ErrorFormField message={errors.occasion || ""} />
         )}
       </div>
 
