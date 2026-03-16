@@ -58,7 +58,12 @@ const BookingForm: React.FC<BookingFormProps> = ({
     <form onSubmit={handleSubmit} className={styles.root}>
       <div>
         <label htmlFor="choose-date">Choose date:</label>
-        <input type="date" id="choose-date" {...getFieldProps("date")} />
+        <input
+          type="date"
+          id="choose-date"
+          aria-label="Choose date"
+          {...getFieldProps("date")}
+        />
         {touched.date && errors.date && (
           <ErrorFormField message={errors.date} />
         )}
@@ -66,7 +71,11 @@ const BookingForm: React.FC<BookingFormProps> = ({
 
       <div>
         <label htmlFor="choose-time">Choose time:</label>
-        <select id="choose-time" {...getFieldProps("time")}>
+        <select
+          id="choose-time"
+          aria-label="Choose time"
+          {...getFieldProps("time")}
+        >
           {availableTimes.map((time) => (
             <option key={time} value={time}>
               {time}
@@ -85,6 +94,7 @@ const BookingForm: React.FC<BookingFormProps> = ({
           id="guests"
           min="1"
           max="10"
+          aria-label="Number of guests"
           {...getFieldProps("guests")}
         />
         {touched.guests && errors.guests && (
@@ -94,7 +104,11 @@ const BookingForm: React.FC<BookingFormProps> = ({
 
       <div>
         <label htmlFor="occasion">Occasion:</label>
-        <select id="occasion" {...getFieldProps("occasion")}>
+        <select
+          id="occasion"
+          aria-label="Occasion"
+          {...getFieldProps("occasion")}
+        >
           <option value="birthday">Birthday</option>
           <option value="anniversary">Anniversary</option>
         </select>
@@ -103,7 +117,9 @@ const BookingForm: React.FC<BookingFormProps> = ({
         )}
       </div>
 
-      <button type="submit">Make your reservation</button>
+      <button type="submit" aria-label="Make your reservation">
+        Make your reservation
+      </button>
     </form>
   );
 };
