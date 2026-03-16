@@ -34,7 +34,8 @@
   font-weight: var(--font-primary-weight-regular);
 }
 
-#footer a:hover {
+#footer a:hover,
+#footer .nav-link-active {
   color: var(--secondary-warm);
   text-decoration: underline;
 }

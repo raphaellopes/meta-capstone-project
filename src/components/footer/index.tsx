@@ -5,9 +5,9 @@ import Nav from "@components/nav";
 const Footer = () => (
   <footer id="footer">
     <div className="container">
-      <div>
+      <a href="/" className="logo-link">
         <img src={Logo} alt="Little Lemon" />
-      </div>
+      </a>
       <div className="footer-content">
         <div className="footer-content-wrapper">
           <h4>Doormat navigation</h4>

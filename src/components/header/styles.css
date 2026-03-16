@@ -29,14 +29,18 @@
   display: none;
 }
 
-#header nav a {
+#header .nav-link {
   font-weight: var(--font-primary-weight-extra-bold);
   color: var(--seconday-dark);
 }
 
-#header nav a:hover {
+#header .nav-link:hover {
   color: var(--primary-highlight);
   text-decoration: underline;
+}
+
+#header .nav-link-active {
+  color: var(--primary-highlight);
 }
 
 @media (min-width: 768px) {

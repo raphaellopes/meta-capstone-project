@@ -10,9 +10,9 @@ const Header = () => (
         <HamburguerIcon />
       </button>
       <div className="header-content">
-        <div>
+        <a href="/" className="logo-link">
           <img src={Logo} alt="Little Lemon" />
-        </div>
+        </a>
         <Nav />
       </div>
     </div>
