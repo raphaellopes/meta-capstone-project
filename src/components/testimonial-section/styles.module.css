@@ -1,9 +1,9 @@
-#testimonials {
+.root {
   background-color: var(--seconday-light);
-  padding: 1rem 0 3rem;
+  padding: 3rem 0;
 }
 
-#testimonials h2 {
+.root h2 {
   color: var(--primary-base);
 }
 

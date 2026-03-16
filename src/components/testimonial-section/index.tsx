@@ -1,10 +1,12 @@
-import "./styles.css";
+import classNames from "classnames";
+
+import styles from "./styles.module.css";
 import SophiaImg from "@assets/sophia-avatar.png";
 import TomazImg from "@assets/tomaz-avatar.png";
 import AmandaImg from "@assets/amanda-avatar.png";
 import StarFilledIcon from "@components/icons/star-filled";
 import Avatar from "@components/avatar";
-import SectionHeader from "../section-header";
+import SectionHeader from "@components/section-header";
 
 const testimonials = [
   {
@@ -33,7 +35,7 @@ interface RateProps {
 }
 
 const Rate: React.FC<RateProps> = ({ id, rate }) => (
-  <div className="rate">
+  <div className={styles.rate}>
     {Array.from({ length: rate }, (_, i) => i).map((i) => (
       <StarFilledIcon key={`${id}-${i}`} />
     ))}
@@ -41,18 +43,18 @@ const Rate: React.FC<RateProps> = ({ id, rate }) => (
 );
 
 const TestimonialsSection = () => (
-  <section id="testimonials">
+  <section className={styles.root} id="testimonials">
     <div className="container">
       <SectionHeader title="Testimonials" variant="primary-base" titleAs="h2" />
-      <div className="testimonial-cards grid">
+      <div className={classNames(styles.testimonialCards, "grid")}>
         {testimonials.map((testimonial) => (
-          <article className="testimonial-card" key={testimonial.name}>
+          <article className={styles.testimonialCard} key={testimonial.name}>
             <Rate id={testimonial.name} rate={testimonial.rate} />
-            <div className="testimonial-content">
+            <div className={styles.testimonialContent}>
               <Avatar src={testimonial.image} alt={testimonial.name} />
-              <p className="testimonial-name">{testimonial.name}</p>
+              <p className={styles.testimonialName}>{testimonial.name}</p>
             </div>
-            <p className="testimonial-quote">{testimonial.quote}</p>
+            <p className={styles.testimonialQuote}>{testimonial.quote}</p>
           </article>
         ))}
       </div>
