@@ -1,7 +1,10 @@
-import styles from "./styles.module.css";
-import GreekSaladImg from "@assets/greek-salad.jpg";
-import SectionHeader from "@components/section-header";
 import classNames from "classnames";
+
+import styles from "./styles.module.css";
+import GreekSaladImg from "@assets/greek-salad.png";
+import BruschetaImg from "@assets/burscheta.png";
+import LemonDessertImg from "@assets/lemon-dessert.png";
+import SectionHeader from "@components/section-header";
 
 const specials = [
   {
@@ -18,7 +21,7 @@ const specials = [
     price: "$10.99",
     description:
       "Our Bruschetta is made from grilled bread that has been smeared with garlic and seasoned with salt and olive oil.",
-    image: GreekSaladImg,
+    image: BruschetaImg,
   },
   {
     id: "lemon-dessert",
@@ -26,7 +29,7 @@ const specials = [
     price: "$11.99",
     description:
       "This comes straight from grandma’s recipe book, every last ingredient has been sourced and is as authentic as can be imagined.",
-    image: GreekSaladImg,
+    image: LemonDessertImg,
   },
 ];
 
