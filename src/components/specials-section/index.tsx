@@ -1,7 +1,7 @@
-import "./styles.css";
+import styles from "./styles.module.css";
 import GreekSaladImg from "@assets/greek-salad.jpg";
-import LemonDessertImg from "@assets/lemon-dessert.jpg";
 import SectionHeader from "@components/section-header";
+import classNames from "classnames";
 
 const specials = [
   {
@@ -26,30 +26,32 @@ const specials = [
     price: "$11.99",
     description:
       "This comes straight from grandma’s recipe book, every last ingredient has been sourced and is as authentic as can be imagined.",
-    image: LemonDessertImg,
+    image: GreekSaladImg,
   },
 ];
 
 const SpecialsSection = () => (
-  <section id="specials">
+  <section className={styles.root} id="specials">
     <div className="container">
       <SectionHeader
-        className="special-header"
+        className={styles.specialHeader}
         title="This week specials"
         right={<button>Online Menu</button>}
       />
-      <div className="special-cards grid">
+      <div className={classNames(styles.specialCards, "grid")}>
         {specials.map((special) => (
-          <article className="special-card" key={special.id}>
-            <div className="special-wrap-img">
+          <article className={styles.specialCard} key={special.id}>
+            <div className={styles.specialWrapImg}>
               <img src={special.image} alt={special.title} />
             </div>
-            <div className="special-card-content">
-              <div className="special-card-header">
-                <h3 className="special-card-title">{special.title}</h3>
-                <p className="special-card-price">{special.price}</p>
+            <div className={styles.specialCardContent}>
+              <div className={styles.specialCardHeader}>
+                <h3 className={styles.specialCardTitle}>{special.title}</h3>
+                <p className={styles.specialCardPrice}>{special.price}</p>
               </div>
-              <p className="special-card-description">{special.description}</p>
+              <p className={styles.specialCardDescription}>
+                {special.description}
+              </p>
             </div>
           </article>
         ))}
