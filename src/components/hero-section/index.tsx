@@ -1,13 +1,13 @@
-import "./styles.css";
+import styles from "./styles.module.css";
 import { useNavigate } from "react-router-dom";
 import RestaurantFood from "@assets/restaurant-food.jpg";
 
 const HeroSection = () => {
   const navigate = useNavigate();
   return (
-    <section id="hero">
+    <section className={styles.root} id="hero">
       <div className="container">
-        <div className="hero-content">
+        <div className={styles.heroContent}>
           <h1>Little Lemon</h1>
           <h2>Chicago</h2>
           <p>
@@ -16,7 +16,7 @@ const HeroSection = () => {
           </p>
           <button onClick={() => navigate("/booking")}>Reserve a Table</button>
         </div>
-        <div className="hero-img-wrapper">
+        <div className={styles.heroImgWrapper}>
           <img src={RestaurantFood} alt="Chef holding a restaurant food" />
         </div>
       </div>

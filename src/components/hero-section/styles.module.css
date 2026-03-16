@@ -1,15 +1,16 @@
-#hero {
+.root {
   background-color: var(--primary-base);
   padding: 0.5rem 0;
 }
 
-#hero > .container {
+.root > :global(.container) {
   position: relative;
 }
 
-#hero > .container > div {
+.root > :global(.container) > div {
   flex: 1;
 }
+
 .hero-content {
   width: 320px;
 }
@@ -24,13 +25,13 @@
   margin-top: 2rem;
 }
 
-#hero h1 {
+.root h1 {
   color: var(--primary-highlight);
   line-height: 2rem;
   margin-top: 1.5rem;
 }
 
-#hero h2 {
+.root h2 {
   color: var(--seconday-light);
   font-family: var(--font-secondary);
   font-optical-sizing: auto;
@@ -54,11 +55,11 @@
 }
 
 @media (min-width: 768px) {
-  #hero {
+  .root {
     padding: 1rem 0;
   }
 
-  #hero > .container {
+  .root > :global(.container) {
     display: flex;
     align-items: center;
     height: 320px;
