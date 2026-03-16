@@ -1,0 +1,13 @@
+.root {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background-color: var(--seconday-error);
+  padding: 0.5rem;
+  border-radius: var(--border-radius-sm);
+  color: var(--seconday-light);
+}
+
+.root svg {
+  fill: var(--seconday-light);
+}
