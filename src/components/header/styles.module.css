@@ -1,14 +1,14 @@
-#header {
+.root {
   padding: 1rem 0;
 }
 
-#header > .container {
+.root > :global(.container) {
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
-#header .header-content {
+.header-content {
   flex: 1;
   display: flex;
   align-items: center;
@@ -16,52 +16,64 @@
   gap: 1rem;
 }
 
-#header .mobile-button-toggle {
+.mobile-button-toggle {
   display: flex;
   padding: 0.5rem 0.7rem;
 }
 
-#header .mobile-button-toggle > svg {
+.mobile-button-toggle > svg {
   width: 24px;
 }
 
-#header .nav {
+.root :global(.nav) {
   display: none;
 }
 
-#header .nav-link {
+.root :global(.nav-link),
+.mobile-nav-container :global(.nav-link) {
   font-weight: var(--font-primary-weight-extra-bold);
   color: var(--seconday-dark);
 }
 
-#header .nav-link:hover {
+.root :global(.nav-link):hover,
+.mobile-nav-container :global(.nav-link):hover {
   color: var(--primary-highlight);
   text-decoration: underline;
 }
 
-#header .nav-link-active {
+.root :global(.nav-link-active),
+.mobile-nav-container :global(.nav-link-active) {
   color: var(--primary-highlight);
 }
 
+.mobile-nav-container {
+  padding: 1rem;
+}
+
+.mobile-nav-container :global(.nav-link) {
+  display: block;
+  padding: 0.5rem 0;
+}
+
 @media (min-width: 768px) {
-  #header {
+  .root {
     padding: 1.25rem 0;
   }
 
-  #header .nav {
+  .root :global(.nav) {
     display: block;
   }
 
-  #header nav ul {
+  .root :global(nav ul) {
     display: flex;
     gap: 2rem;
   }
 
-  #header .header-content {
+  .header-content {
     justify-content: space-between;
   }
 
-  #header .mobile-button-toggle {
+  .mobile-button-toggle {
     display: none;
   }
 }
