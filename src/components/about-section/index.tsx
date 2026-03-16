@@ -1,12 +1,12 @@
-import "./styles.css";
+import styles from "./styles.module.css";
 import About1Img from "@assets/about-restaurant-a.png";
 import About2Img from "@assets/about-restaurant-b.png";
 import SectionHeader from "../section-header";
 
 const AboutSection = () => (
-  <section id="about">
+  <section className={styles.root} id="about">
     <div className="container">
-      <div className="about-box">
+      <div className={styles.aboutBox}>
         <SectionHeader
           title="Little Lemon"
           subtitle="Chicago"
@@ -14,7 +14,7 @@ const AboutSection = () => (
           titleAs="h2"
           subtitleAs="h3"
         />
-        <p className="about-description">
+        <p className={styles.aboutDescription}>
           We are a family owned Mediterranean restaurant, focused on traditional
           recipes served with a modern twist. We are a family owned
           Mediterranean restaurant, focused on traditional recipes served with a
@@ -22,14 +22,14 @@ const AboutSection = () => (
           on traditional recipes served with a modern twist.
         </p>
       </div>
-      <div className="about-img-wrapper">
+      <div className={styles.aboutImgWrapper}>
         <img
-          className="about-img-top"
+          className={styles.aboutImgTop}
           src={About1Img}
           alt="Restaurant owner talking to the chef about food"
         />
         <img
-          className="about-img-bottom"
+          className={styles.aboutImgBottom}
           src={About2Img}
           alt="Restaurant owner smilling with the chef"
         />
