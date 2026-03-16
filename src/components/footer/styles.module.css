@@ -1,53 +1,53 @@
-#footer {
+.root {
   background-color: var(--seconday-light);
   padding: 3rem 0;
 }
 
-#footer > .container {
+.root > :global(.container) {
   display: flex;
   flex-direction: column;
   gap: 1rem;
 }
 
-#footer .footer-content {
+.footer-content {
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
 }
 
-#footer .footer-content-wrapper {
+.footer-content-wrapper {
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
 }
 
-#footer .nav-list,
-#footer .footer-content-box {
+.nav-list,
+.footer-content-box {
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
 }
 
-#footer a,
-#footer p {
+.root :global(a),
+.root :global(p) {
   color: var(--primary-base);
   font-weight: var(--font-primary-weight-regular);
 }
 
-#footer a:hover,
-#footer .nav-link-active {
+.root :global(a):hover,
+.root :global(.nav-link-active) {
   color: var(--secondary-warm);
   text-decoration: underline;
 }
 
 @media (min-width: 768px) {
-  #footer > .container {
+  .root > :global(.container) {
     flex-direction: row;
     align-items: start;
     gap: 6rem;
   }
 
-  #footer .footer-content {
+  .footer-content {
     flex-direction: row;
     justify-content: space-between;
     flex: 1;
