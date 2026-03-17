@@ -8,6 +8,7 @@ import {
 import HomePage from "@pages/home";
 import BookingPage from "@pages/booking";
 import BookingConfirmationPage from "@pages/booking-confirmation";
+import OrderOnlinePage from "@pages/order-online";
 
 const Main = () => {
   const navigate = useNavigate();
@@ -67,6 +68,7 @@ const Main = () => {
           path="/booking-confirmation"
           element={<BookingConfirmationPage />}
         />
+        <Route path="/order-online" element={<OrderOnlinePage />} />
       </Routes>
     </main>
   );

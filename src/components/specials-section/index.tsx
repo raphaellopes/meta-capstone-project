@@ -1,10 +1,11 @@
 import classNames from "classnames";
+import { useNavigate } from "react-router-dom";
 
-import styles from "./styles.module.css";
 import GreekSaladImg from "@assets/greek-salad.png";
 import BruschetaImg from "@assets/burscheta.png";
 import LemonDessertImg from "@assets/lemon-dessert.png";
 import SectionHeader from "@components/section-header";
+import styles from "./styles.module.css";
 
 const specials = [
   {
@@ -33,34 +34,42 @@ const specials = [
   },
 ];
 
-const SpecialsSection = () => (
-  <section className={styles.root} id="specials">
-    <div className="container">
-      <SectionHeader
-        className={styles.specialHeader}
-        title="This week specials"
-        right={<button>Online Menu</button>}
-      />
-      <div className={classNames(styles.specialCards, "grid")}>
-        {specials.map((special) => (
-          <article className={styles.specialCard} key={special.id}>
-            <div className={styles.specialWrapImg}>
-              <img src={special.image} alt={special.title} />
-            </div>
-            <div className={styles.specialCardContent}>
-              <div className={styles.specialCardHeader}>
-                <h3 className={styles.specialCardTitle}>{special.title}</h3>
-                <p className={styles.specialCardPrice}>{special.price}</p>
+const SpecialsSection = () => {
+  const navigate = useNavigate();
+
+  return (
+    <section className={styles.root} id="specials">
+      <div className="container">
+        <SectionHeader
+          className={styles.specialHeader}
+          title="This week specials"
+          right={
+            <button onClick={() => navigate("/order-online")}>
+              Online Menu
+            </button>
+          }
+        />
+        <div className={classNames(styles.specialCards, "grid")}>
+          {specials.map((special) => (
+            <article className={styles.specialCard} key={special.id}>
+              <div className={styles.specialWrapImg}>
+                <img src={special.image} alt={special.title} />
               </div>
-              <p className={styles.specialCardDescription}>
-                {special.description}
-              </p>
-            </div>
-          </article>
-        ))}
+              <div className={styles.specialCardContent}>
+                <div className={styles.specialCardHeader}>
+                  <h3 className={styles.specialCardTitle}>{special.title}</h3>
+                  <p className={styles.specialCardPrice}>{special.price}</p>
+                </div>
+                <p className={styles.specialCardDescription}>
+                  {special.description}
+                </p>
+              </div>
+            </article>
+          ))}
+        </div>
       </div>
-    </div>
-  </section>
-);
+    </section>
+  );
+};
 
 export default SpecialsSection;
