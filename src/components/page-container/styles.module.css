@@ -1,0 +1,8 @@
+.root {
+  padding: 3rem 0 5rem;
+  min-height: 60vh;
+}
+
+.root header {
+  margin-bottom: 2rem;
+}

@@ -1,9 +1,9 @@
 import { useNavigate } from "react-router-dom";
-import BookingConfirmation from "@components/booking-confirmation";
+import BookingConfirmationSection from "@components/booking-confirmation-section";
 
 const BookingConfirmationPage = () => {
   const navigate = useNavigate();
-  return <BookingConfirmation onClickButton={() => navigate("/")} />;
+  return <BookingConfirmationSection onClickButton={() => navigate("/")} />;
 };
 
 export default BookingConfirmationPage;

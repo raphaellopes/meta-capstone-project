@@ -1,16 +1,13 @@
-import SectionHeader from "@components/section-header";
+import PageContainer from "@components/page-container";
 import styles from "./styles.module.css";
 
 const OrderOnlineSection = () => {
   return (
-    <section id="order-online" className={styles.root}>
-      <div className="container">
-        <SectionHeader title="Order Online" variant="primary-base" />
-        <div className={styles.orderOnlineContent}>
-          <p>Apply form for order online</p>
-        </div>
+    <PageContainer id="order-online" title="Order Online">
+      <div className={styles.orderOnlineContent}>
+        <p>Apply form for order online</p>
       </div>
-    </section>
+    </PageContainer>
   );
 };
 

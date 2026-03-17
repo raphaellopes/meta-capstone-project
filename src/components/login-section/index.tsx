@@ -1,16 +1,13 @@
-import SectionHeader from "@components/section-header";
 import styles from "./styles.module.css";
+import PageContainer from "@components/page-container";
 
 const LoginSection = () => {
   return (
-    <section id="login" className={styles.root}>
-      <div className="container">
-        <SectionHeader title="Login" variant="primary-base" />
-        <div className={styles.loginContent}>
-          <p>Apply form for login</p>
-        </div>
+    <PageContainer id="login" title="Login">
+      <div className={styles.loginContent}>
+        <p>Apply form for login</p>
       </div>
-    </section>
+    </PageContainer>
   );
 };
 
