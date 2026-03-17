@@ -1,6 +1,8 @@
-import styles from "./styles.module.css";
 import { useNavigate } from "react-router-dom";
+
+import Button from "@components/button";
 import RestaurantFood from "@assets/restaurant-food.jpg";
+import styles from "./styles.module.css";
 
 const HeroSection = () => {
   const navigate = useNavigate();
@@ -14,7 +16,7 @@ const HeroSection = () => {
             We are a family owned Mediterranean restaurant, focused on
             traditional recipes served with a modern twist.
           </p>
-          <button onClick={() => navigate("/booking")}>Reserve a Table</button>
+          <Button onClick={() => navigate("/booking")}>Reserve a Table</Button>
         </div>
         <div className={styles.heroImgWrapper}>
           <img src={RestaurantFood} alt="Chef holding a restaurant food" />

@@ -1,4 +1,5 @@
 import PageContainer from "@components/page-container";
+import Button from "@components/button";
 import styles from "./styles.module.css";
 
 interface BookingConfirmationProps {
@@ -33,7 +34,7 @@ const BookingConfirmation: React.FC<BookingConfirmationProps> = ({
           </li>
         </ul>
         <div>
-          <button onClick={onClickButton}>Back to home</button>
+          <Button onClick={onClickButton}>Back to home</Button>
         </div>
       </div>
     </PageContainer>

@@ -1,10 +1,11 @@
 import { useState } from "react";
 
-import styles from "./styles.module.css";
 import Logo from "@assets/logo.svg";
 import HamburguerIcon from "@components/icons/hamburguer";
 import CloseIcon from "@components/icons/close";
 import Nav from "@components/nav";
+import Button from "@components/button";
+import styles from "./styles.module.css";
 
 const Header = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -17,12 +18,13 @@ const Header = () => {
     <>
       <header className={styles.root} id="header">
         <div className="container">
-          <button
+          <Button
             className={styles.mobileButtonToggle}
             onClick={toggleMobileMenu}
+            aria-label="Toggle navigation menu"
           >
             {isMobileMenuOpen ? <CloseIcon /> : <HamburguerIcon />}
-          </button>
+          </Button>
           <div className={styles.headerContent}>
             <a href="/" className="logo-link">
               <img src={Logo} alt="Little Lemon" />

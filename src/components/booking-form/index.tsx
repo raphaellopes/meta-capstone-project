@@ -2,8 +2,9 @@ import { useEffect } from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 
-import styles from "./styles.module.css";
 import ErrorFormField from "@components/error-form-field";
+import Button from "@components/button";
+import styles from "./styles.module.css";
 
 export interface FormDataType {
   date: string;
@@ -128,13 +129,13 @@ const BookingForm: React.FC<BookingFormProps> = ({
         )}
       </div>
 
-      <button
+      <Button
         type="submit"
         aria-label="Make your reservation"
         disabled={!isValid}
       >
         Make your reservation
-      </button>
+      </Button>
     </form>
   );
 };

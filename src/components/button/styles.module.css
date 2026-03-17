@@ -1,0 +1,25 @@
+ .root {
+  border: none;
+  background-color: var(--primary-highlight);
+  color: var(--primary-base);
+  text-transform: uppercase;
+  font-weight: var(--font-primary-weight-extra-bold);
+  padding: 0.8rem 1.5rem;
+  border-radius: var(--border-radius-base);
+}
+
+.root:hover {
+  background-color: var(--secondary-warm);
+  border: none;
+}
+
+.root:focus {
+  outline: 2px solid var(--primary-base);
+}
+
+.root:disabled {
+  background-color: var(--secondary-light);
+  color: var(--secondary-dark);
+  cursor: not-allowed;
+}
+

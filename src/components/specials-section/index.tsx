@@ -5,6 +5,7 @@ import GreekSaladImg from "@assets/greek-salad.png";
 import BruschetaImg from "@assets/burscheta.png";
 import LemonDessertImg from "@assets/lemon-dessert.png";
 import SectionHeader from "@components/section-header";
+import Button from "@components/button";
 import styles from "./styles.module.css";
 
 const specials = [
@@ -44,9 +45,9 @@ const SpecialsSection = () => {
           className={styles.specialHeader}
           title="This week specials"
           right={
-            <button onClick={() => navigate("/order-online")}>
+            <Button onClick={() => navigate("/order-online")}>
               Online Menu
-            </button>
+            </Button>
           }
         />
         <div className={classNames(styles.specialCards, "grid")}>
