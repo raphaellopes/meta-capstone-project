@@ -15,26 +15,21 @@
   gap: 1.5rem;
 }
 
-.footer-content-wrapper {
+.footer-content-wrapper,
+.footer-content-box,
+.footer-content-wrapper :global(.nav-list) {
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
 }
 
-.nav-list,
-.footer-content-box {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-}
-
-.root :global(a),
-.root :global(p) {
+.root a,
+.root p {
   color: var(--primary-base);
   font-weight: var(--font-primary-weight-regular);
 }
 
-.root :global(a):hover,
+.root a:hover,
 .root :global(.nav-link-active) {
   color: var(--secondary-warm);
   text-decoration: underline;

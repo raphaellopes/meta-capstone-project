@@ -2,7 +2,8 @@ import classNames from "classnames";
 import { useLocation } from "react-router-dom";
 
 const Nav = () => {
-  const currentPath = useLocation().pathname;
+  const location = useLocation();
+  const currentPath = location.pathname + location.hash;
   const isActive = (path: string) => currentPath === path;
 
   const navLinks = [

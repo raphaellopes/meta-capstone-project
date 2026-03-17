@@ -12,19 +12,22 @@ const testimonials = [
   {
     rate: 5,
     name: "Sophia Martinez",
-    quote: "This place is amazing!",
+    quote:
+      "Perfect patio vibes for a girls’ night. The food is incredibly fresh and delicious. We’ll definitely be back!",
     image: SophiaImg,
   },
   {
     rate: 5,
     name: "Tomaz Xavier",
-    quote: "Very good food and service",
+    quote:
+      "My new favorite spot. Authentic flavors and amazing service. Highly recommend the Bruschetta!",
     image: TomazImg,
   },
   {
     rate: 5,
     name: "Amanda Gabriela",
-    quote: "The best place in town",
+    quote:
+      "The food here is delicious, fresh, and light. It really feels like a escape to a true Mediterranean seaside café.",
     image: AmandaImg,
   },
 ];

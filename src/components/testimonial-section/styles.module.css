@@ -1,10 +1,18 @@
 .root {
   background-color: var(--seconday-light);
-  padding: 3rem 0;
+  padding: 3rem 0 5rem;
+}
+
+.root header {
+  margin-bottom: 2rem;
 }
 
 .root h2 {
   color: var(--primary-base);
+}
+
+.testimonial-cards {
+  align-items: stretch;
 }
 
 .testimonial-card {
