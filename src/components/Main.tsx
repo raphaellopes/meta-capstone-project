@@ -13,19 +13,7 @@ const Main = () => {
   const navigate = useNavigate();
 
   const handleGetBookingData = (date: Date) => {
-    const storedData = localStorage.getItem("booking-data");
-    const bookingData = storedData ? JSON.parse(storedData) : [];
-    const takenForDate = bookingData.filter(
-      (booking: FormDataType) =>
-        booking.date === date.toISOString().split("T")[0]
-    );
-    const storedTimes = takenForDate.map(
-      (booking: FormDataType) => booking.time
-    );
-
-    const availableTimes = fetchAPI(date).filter(
-      (time: string) => !storedTimes.includes(time)
-    );
+    const availableTimes = fetchAPI(date);
 
     return availableTimes;
   };
@@ -50,13 +38,9 @@ const Main = () => {
   };
 
   const handleSubmitBooking = (formData: FormDataType) => {
-    console.log("formData >>>", formData);
     const success = submitAPI(formData);
     if (success) {
-      const storedData = localStorage.getItem("booking-data");
-      const bookingData = storedData ? JSON.parse(storedData) : [];
-      bookingData.push(formData);
-      localStorage.setItem("booking-data", JSON.stringify(bookingData));
+      sessionStorage.setItem("booking-data", JSON.stringify(formData));
       navigate("/booking-confirmation");
     }
   };
