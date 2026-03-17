@@ -3,10 +3,10 @@
   --primary-highlight: #f4ce14;
   --primary-base: #495e57;
   --secondary-warm: #ee9972;
-  --seconday-warm-light: #fbdabb;
-  --seconday-light: #edefee;
-  --seconday-dark: #333333;
-  --seconday-error: #b80a00;
+  --secondary-warm-light: #fbdabb;
+  --secondary-light: #edefee;
+  --secondary-dark: #333333;
+  --secondary-error: #b80a00;
 
   /** fonts */
   --font-primary: "Karla", sans-serif;
@@ -130,12 +130,12 @@ select:focus {
 
 input.input-error,
 select.select-error {
-  border-color: var(--seconday-error);
+  border-color: var(--secondary-error);
 }
 
 input.input-error:focus,
 select.select-error:focus {
-  outline: 2px solid var(--seconday-error);
+  outline: 2px solid var(--secondary-error);
 }
 
 @media (min-width: 768px) {

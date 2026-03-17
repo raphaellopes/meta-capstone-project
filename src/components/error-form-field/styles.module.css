@@ -2,12 +2,12 @@
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  background-color: var(--seconday-error);
+  background-color: var(--secondary-error);
   padding: 0.5rem;
   border-radius: var(--border-radius-sm);
-  color: var(--seconday-light);
+  color: var(--secondary-light);
 }
 
 .root svg {
-  fill: var(--seconday-light);
+  fill: var(--secondary-light);
 }

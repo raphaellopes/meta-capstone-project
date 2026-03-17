@@ -3,7 +3,7 @@
 }
 
 .root h1 {
-  color: var(--seconday-dark);
+  color: var(--secondary-dark);
 }
 
 .special-header {
@@ -19,7 +19,7 @@
 }
 
 .special-card {
-  background-color: var(--seconday-light);
+  background-color: var(--secondary-light);
   border-radius: var(--border-radius-base);
   overflow: hidden;
 }
@@ -37,7 +37,7 @@
 }
 
 .special-card-title {
-  color: var(--seconday-dark);
+  color: var(--secondary-dark);
   font-weight: var(--font-primary-weight-bold);
 }
 
