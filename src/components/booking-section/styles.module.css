@@ -1,0 +1,37 @@
+.root {
+  padding: 3rem 0 5rem;
+}
+
+.root header {
+  margin-bottom: 2rem;
+}
+
+.booking-image-wrapper {
+  display: none;
+}
+
+.booking-image {
+  border-radius: var(--border-radius-base);
+  overflow: hidden;
+}
+
+@media (min-width: 768px) {
+  .booking-form-wrapper {
+    display: flex;
+    flex-direction: row;
+    gap: 2rem;
+  }
+
+  .booking-form-wrapper > form,
+  .booking-form-wrapper > div {
+    flex: 1;
+  }
+
+  .booking-form-wrapper > form {
+    padding: 0;
+  }
+
+  .booking-image-wrapper {
+    display: block;
+  }
+}

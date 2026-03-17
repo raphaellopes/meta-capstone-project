@@ -1,5 +1,5 @@
-import BookingForm, { type BookingFormProps } from "@components/booking-form";
-import SectionHeader from "@components/section-header";
+import { type BookingFormProps } from "@components/booking-form";
+import BookingSection from "@components/booking-section";
 
 interface BookingPageProps extends BookingFormProps {}
 
@@ -9,16 +9,11 @@ const BookingPage: React.FC<BookingPageProps> = ({
   onSubmit,
 }) => {
   return (
-    <section id="booking">
-      <div className="container">
-        <SectionHeader title="Reserve a table" variant="primary-base" />
-        <BookingForm
-          availableTimes={availableTimes}
-          onDateChange={onDateChange}
-          onSubmit={onSubmit}
-        />
-      </div>
-    </section>
+    <BookingSection
+      availableTimes={availableTimes}
+      onDateChange={onDateChange}
+      onSubmit={onSubmit}
+    />
   );
 };
 
