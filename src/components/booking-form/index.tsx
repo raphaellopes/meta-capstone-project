@@ -26,7 +26,7 @@ const BookingForm: React.FC<BookingFormProps> = ({
   onDateChange,
   onSubmit,
 }) => {
-  const { handleSubmit, values, getFieldProps, errors, touched } =
+  const { handleSubmit, values, getFieldProps, errors, touched, isValid } =
     useFormik<FormDataType>({
       initialValues: {
         date: new Date().toISOString().split("T")[0],
@@ -128,7 +128,11 @@ const BookingForm: React.FC<BookingFormProps> = ({
         )}
       </div>
 
-      <button type="submit" aria-label="Make your reservation">
+      <button
+        type="submit"
+        aria-label="Make your reservation"
+        disabled={!isValid}
+      >
         Make your reservation
       </button>
     </form>

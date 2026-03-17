@@ -105,6 +105,12 @@ button:focus {
   outline: 2px solid var(--primary-base);
 }
 
+button:disabled {
+  background-color: var(--secondary-light);
+  color: var(--secondary-dark);
+  cursor: not-allowed;
+}
+
 .container {
   max-width: 1024px;
   margin: 0 auto;
