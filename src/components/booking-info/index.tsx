@@ -1,3 +1,4 @@
+import classNames from "classnames";
 import styles from "./styles.module.css";
 
 export interface BookingInfoProps {
@@ -5,6 +6,7 @@ export interface BookingInfoProps {
   time: string;
   guests: string;
   occasion: string;
+  onClickEdit?: () => void;
 }
 
 const occasionLabels: Record<string, string> = {
@@ -17,15 +19,18 @@ const BookingInfo: React.FC<BookingInfoProps> = ({
   time,
   guests,
   occasion,
+  onClickEdit,
 }) => {
   const occasionDisplay =
-    occasionLabels[occasion] ?? occasion.charAt(0).toUpperCase() + occasion.slice(1);
+    occasionLabels[occasion] ??
+    occasion.charAt(0).toUpperCase() + occasion.slice(1);
 
   return (
     <section
-      className={styles.root}
+      className={classNames(styles.root, { [styles.editable]: onClickEdit })}
       aria-labelledby="booking-info-heading"
     >
+      {onClickEdit && <button onClick={onClickEdit}>Edit</button>}
       <h3 id="booking-info-heading" className={styles.title}>
         Reservation details
       </h3>

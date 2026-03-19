@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useState } from "react";
-import { useFormik } from "formik";
+import { FormikProvider, useFormik, useFormikContext } from "formik";
 import * as Yup from "yup";
 
 import ErrorFormField from "@components/error-form-field";
@@ -78,6 +78,176 @@ enum Steps {
   CONTACT_DETAILS = 2,
 }
 
+interface BookingFormDataStepProps {
+  availableTimes: AvailableTimesType;
+  onContinue: () => void;
+  isInputInvalid: (field: keyof BookingFormValues) => boolean;
+}
+const BookingFormDataStep: React.FC<BookingFormDataStepProps> = ({
+  availableTimes,
+  onContinue,
+  isInputInvalid,
+}) => {
+  const { getFieldProps, errors, isValid } =
+    useFormikContext<BookingFormValues>();
+  return (
+    <>
+      <div>
+        <label htmlFor="choose-date">Choose date:</label>
+        <input
+          type="date"
+          id="choose-date"
+          aria-label="Choose date"
+          className={isInputInvalid("date") ? "input-error" : ""}
+          {...getFieldProps("date")}
+        />
+        {isInputInvalid("date") && (
+          <ErrorFormField message={errors.date ?? ""} />
+        )}
+      </div>
+
+      <div>
+        <label htmlFor="choose-time">Choose time:</label>
+        <select
+          id="choose-time"
+          aria-label="Choose time"
+          className={isInputInvalid("time") ? "select-error" : ""}
+          {...getFieldProps("time")}
+        >
+          {availableTimes.map((time) => (
+            <option key={time} value={time}>
+              {time}
+            </option>
+          ))}
+        </select>
+        {isInputInvalid("time") && (
+          <ErrorFormField message={errors.time ?? ""} />
+        )}
+      </div>
+
+      <div>
+        <label htmlFor="guests">Number of guests:</label>
+        <input
+          type="number"
+          id="guests"
+          min="1"
+          max="10"
+          aria-label="Number of guests"
+          className={isInputInvalid("guests") ? "input-error" : ""}
+          {...getFieldProps("guests")}
+        />
+        {isInputInvalid("guests") && (
+          <ErrorFormField message={errors.guests ?? ""} />
+        )}
+      </div>
+
+      <div>
+        <label htmlFor="occasion">Occasion:</label>
+        <select
+          id="occasion"
+          aria-label="Occasion"
+          className={isInputInvalid("occasion") ? "select-error" : ""}
+          {...getFieldProps("occasion")}
+        >
+          <option value="birthday">Birthday</option>
+          <option value="anniversary">Anniversary</option>
+        </select>
+        {isInputInvalid("occasion") && (
+          <ErrorFormField message={errors.occasion ?? ""} />
+        )}
+      </div>
+
+      <div className={styles.actions}>
+        <Button
+          type="button"
+          aria-label="Continue to contact details"
+          disabled={!isValid}
+          onClick={onContinue}
+        >
+          Continue
+        </Button>
+      </div>
+    </>
+  );
+};
+
+interface BookingFormContactDetailsStepProps {
+  onBack: () => void;
+  isInputInvalid: (field: keyof BookingFormValues) => boolean;
+}
+const BookingFormContactDetailsStep: React.FC<
+  BookingFormContactDetailsStepProps
+> = ({ onBack, isInputInvalid }) => {
+  const { getFieldProps, errors, isValid, values } =
+    useFormikContext<BookingFormValues>();
+  return (
+    <>
+      <BookingInfo
+        onClickEdit={onBack}
+        date={values.date}
+        time={values.time}
+        guests={values.guests}
+        occasion={values.occasion}
+      />
+
+      <div>
+        <label htmlFor="full-name">Full name:</label>
+        <input
+          type="text"
+          id="full-name"
+          autoComplete="name"
+          aria-label="Full name"
+          className={isInputInvalid("fullName") ? "input-error" : ""}
+          {...getFieldProps("fullName")}
+        />
+        {isInputInvalid("fullName") && (
+          <ErrorFormField message={errors.fullName ?? ""} />
+        )}
+      </div>
+
+      <div>
+        <label htmlFor="email">Email:</label>
+        <input
+          type="email"
+          id="email"
+          autoComplete="email"
+          aria-label="Email"
+          className={isInputInvalid("email") ? "input-error" : ""}
+          {...getFieldProps("email")}
+        />
+        {isInputInvalid("email") && (
+          <ErrorFormField message={errors.email ?? ""} />
+        )}
+      </div>
+
+      <div>
+        <label htmlFor="phone">Phone (optional):</label>
+        <input
+          type="tel"
+          id="phone"
+          autoComplete="tel"
+          aria-label="Phone"
+          className={isInputInvalid("phone") ? "input-error" : ""}
+          {...getFieldProps("phone")}
+        />
+        {isInputInvalid("phone") && (
+          <ErrorFormField message={errors.phone ?? ""} />
+        )}
+      </div>
+
+      <div className={styles.actions}>
+        <Button
+          type="submit"
+          aria-label="Make your reservation"
+          disabled={!isValid}
+        >
+          Make your reservation
+        </Button>
+      </div>
+    </>
+  );
+};
+
 const BookingForm: React.FC<BookingFormProps> = ({
   availableTimes,
   onDateChange,
@@ -102,16 +272,7 @@ const BookingForm: React.FC<BookingFormProps> = ({
     [step]
   );
 
-  const {
-    handleSubmit,
-    values,
-    getFieldProps,
-    errors,
-    touched,
-    isValid,
-    validateForm,
-    setFieldTouched,
-  } = useFormik<BookingFormValues>({
+  const formik = useFormik<BookingFormValues>({
     initialValues: {
       date: new Date().toISOString().split("T")[0],
       time: availableTimes[0] ?? "",
@@ -134,6 +295,17 @@ const BookingForm: React.FC<BookingFormProps> = ({
       });
     },
   });
+
+  const {
+    handleSubmit,
+    values,
+    getFieldProps,
+    errors,
+    touched,
+    isValid,
+    validateForm,
+    setFieldTouched,
+  } = formik;
 
   const isInputInvalid = (field: keyof BookingFormValues) => {
     return Boolean(touched[field] && errors[field]);
@@ -167,160 +339,24 @@ const BookingForm: React.FC<BookingFormProps> = ({
   };
 
   return (
-    <form onSubmit={handleSubmit} className={styles.root} noValidate>
-      {step === Steps.BOOKING_DATA && (
-        <>
-          <div>
-            <label htmlFor="choose-date">Choose date:</label>
-            <input
-              type="date"
-              id="choose-date"
-              aria-label="Choose date"
-              className={isInputInvalid("date") ? "input-error" : ""}
-              {...getFieldProps("date")}
-            />
-            {isInputInvalid("date") && (
-              <ErrorFormField message={errors.date ?? ""} />
-            )}
-          </div>
-
-          <div>
-            <label htmlFor="choose-time">Choose time:</label>
-            <select
-              id="choose-time"
-              aria-label="Choose time"
-              className={isInputInvalid("time") ? "select-error" : ""}
-              {...getFieldProps("time")}
-            >
-              {availableTimes.map((time) => (
-                <option key={time} value={time}>
-                  {time}
-                </option>
-              ))}
-            </select>
-            {isInputInvalid("time") && (
-              <ErrorFormField message={errors.time ?? ""} />
-            )}
-          </div>
-
-          <div>
-            <label htmlFor="guests">Number of guests:</label>
-            <input
-              type="number"
-              id="guests"
-              min="1"
-              max="10"
-              aria-label="Number of guests"
-              className={isInputInvalid("guests") ? "input-error" : ""}
-              {...getFieldProps("guests")}
-            />
-            {isInputInvalid("guests") && (
-              <ErrorFormField message={errors.guests ?? ""} />
-            )}
-          </div>
-
-          <div>
-            <label htmlFor="occasion">Occasion:</label>
-            <select
-              id="occasion"
-              aria-label="Occasion"
-              className={isInputInvalid("occasion") ? "select-error" : ""}
-              {...getFieldProps("occasion")}
-            >
-              <option value="birthday">Birthday</option>
-              <option value="anniversary">Anniversary</option>
-            </select>
-            {isInputInvalid("occasion") && (
-              <ErrorFormField message={errors.occasion ?? ""} />
-            )}
-          </div>
-
-          <div className={styles.actions}>
-            <Button
-              type="button"
-              aria-label="Continue to contact details"
-              disabled={!isValid}
-              onClick={handleContinue}
-            >
-              Continue
-            </Button>
-          </div>
-        </>
-      )}
-
-      {step === Steps.CONTACT_DETAILS && (
-        <>
-          <BookingInfo
-            date={values.date}
-            time={values.time}
-            guests={values.guests}
-            occasion={values.occasion}
+    <FormikProvider value={formik}>
+      <form onSubmit={handleSubmit} className={styles.root} noValidate>
+        {step === Steps.BOOKING_DATA && (
+          <BookingFormDataStep
+            availableTimes={availableTimes}
+            onContinue={handleContinue}
+            isInputInvalid={isInputInvalid}
           />
+        )}
 
-          <div>
-            <label htmlFor="full-name">Full name:</label>
-            <input
-              type="text"
-              id="full-name"
-              autoComplete="name"
-              aria-label="Full name"
-              className={isInputInvalid("fullName") ? "input-error" : ""}
-              {...getFieldProps("fullName")}
-            />
-            {isInputInvalid("fullName") && (
-              <ErrorFormField message={errors.fullName ?? ""} />
-            )}
-          </div>
-
-          <div>
-            <label htmlFor="email">Email:</label>
-            <input
-              type="email"
-              id="email"
-              autoComplete="email"
-              aria-label="Email"
-              className={isInputInvalid("email") ? "input-error" : ""}
-              {...getFieldProps("email")}
-            />
-            {isInputInvalid("email") && (
-              <ErrorFormField message={errors.email ?? ""} />
-            )}
-          </div>
-
-          <div>
-            <label htmlFor="phone">Phone (optional):</label>
-            <input
-              type="tel"
-              id="phone"
-              autoComplete="tel"
-              aria-label="Phone"
-              className={isInputInvalid("phone") ? "input-error" : ""}
-              {...getFieldProps("phone")}
-            />
-            {isInputInvalid("phone") && (
-              <ErrorFormField message={errors.phone ?? ""} />
-            )}
-          </div>
-
-          <div className={styles.actions}>
-            <Button
-              type="button"
-              aria-label="Back to reservation details"
-              onClick={handleBack}
-            >
-              Back
-            </Button>
-            <Button
-              type="submit"
-              aria-label="Make your reservation"
-              disabled={!isValid}
-            >
-              Make your reservation
-            </Button>
-          </div>
-        </>
-      )}
-    </form>
+        {step === Steps.CONTACT_DETAILS && (
+          <BookingFormContactDetailsStep
+            onBack={handleBack}
+            isInputInvalid={isInputInvalid}
+          />
+        )}
+      </form>
+    </FormikProvider>
   );
 };
 

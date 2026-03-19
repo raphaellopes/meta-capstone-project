@@ -32,3 +32,29 @@
 .description {
   margin: 0;
 }
+
+.editable {
+  position: relative;
+}
+
+.editable button {
+  background: none;
+  border: 1px solid var(--primary-highlight);
+  border-radius: var(--border-radius-sm);
+  color: var(--primary-highlight);
+  font-size: 0.875rem;
+  font-weight: 600;
+  cursor: pointer;
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+}
+
+.editable button:hover {
+  background: var(--primary-highlight);
+  color: var(--primary-base);
+}
+
+.editable button:focus {
+  outline: 2px solid var(--primary-highlight);
+}
