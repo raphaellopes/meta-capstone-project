@@ -156,10 +156,14 @@ describe("BookingPage", () => {
 
       fireEvent.click(screen.getByRole("button", { name: /edit/i }));
 
-      expect(screen.queryByText("Reservation details")).not.toBeInTheDocument();
-      expect(
-        screen.getByRole("button", { name: /continue/i })
-      ).toBeInTheDocument();
+      await waitFor(() => {
+        expect(
+          screen.queryByText("Reservation details")
+        ).not.toBeInTheDocument();
+        expect(
+          screen.getByRole("button", { name: /continue/i })
+        ).toBeInTheDocument();
+      });
     });
   });
 
