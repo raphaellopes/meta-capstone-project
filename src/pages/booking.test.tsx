@@ -1,27 +1,34 @@
 import { fireEvent, render, screen, waitFor } from "@testing-library/react";
+import { MemoryRouter } from "react-router-dom";
+import * as api from "@lib/api";
 import BookingPage from "./booking";
 
+const renderBookingPage = (initialEntries = ["/booking"]) => {
+  return render(
+    <MemoryRouter initialEntries={initialEntries}>
+      <BookingPage />
+    </MemoryRouter>
+  );
+};
+
 describe("BookingPage", () => {
+  beforeEach(() => {
+    vi.spyOn(api, "fetchAPI").mockReturnValue([]);
+  });
+
+  afterEach(() => {
+    vi.restoreAllMocks();
+    sessionStorage.clear();
+  });
+
   it("should render the booking page", () => {
-    render(
-      <BookingPage
-        availableTimes={[]}
-        onDateChange={() => {}}
-        onSubmit={() => {}}
-      />
-    );
+    renderBookingPage();
 
     expect(screen.getByText("Reserve a table")).toBeInTheDocument();
   });
 
   it("should render the booking form", () => {
-    render(
-      <BookingPage
-        availableTimes={[]}
-        onDateChange={() => {}}
-        onSubmit={() => {}}
-      />
-    );
+    renderBookingPage();
 
     expect(screen.getByText("Choose date:")).toBeInTheDocument();
     expect(screen.getByText("Choose time:")).toBeInTheDocument();
@@ -30,14 +37,10 @@ describe("BookingPage", () => {
   });
 
   it("should submit the booking form", async () => {
-    const onSubmit = vi.fn();
-    render(
-      <BookingPage
-        availableTimes={["18:00"]}
-        onDateChange={() => {}}
-        onSubmit={onSubmit}
-      />
-    );
+    vi.spyOn(api, "fetchAPI").mockReturnValue(["18:00"]);
+    const submitAPISpy = vi.spyOn(api, "submitAPI").mockReturnValue(true);
+
+    renderBookingPage();
 
     const dateInput = screen.getByLabelText("Choose date:");
     fireEvent.change(dateInput, {
@@ -59,7 +62,7 @@ describe("BookingPage", () => {
     fireEvent.click(submitButton);
 
     await waitFor(() => {
-      expect(onSubmit).toHaveBeenCalledWith(
+      expect(submitAPISpy).toHaveBeenCalledWith(
         expect.objectContaining({
           date: "2026-03-17",
           time: "18:00",
@@ -72,13 +75,7 @@ describe("BookingPage", () => {
 
   describe("Booking form errors", () => {
     beforeEach(() => {
-      render(
-        <BookingPage
-          availableTimes={[]}
-          onDateChange={() => {}}
-          onSubmit={() => {}}
-        />
-      );
+      renderBookingPage();
     });
 
     it("should validate the date field", async () => {
