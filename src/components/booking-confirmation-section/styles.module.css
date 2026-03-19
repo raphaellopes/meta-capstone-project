@@ -4,3 +4,21 @@
   gap: 1rem;
   margin-bottom: 2rem;
 }
+
+.booking-details-content {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+@media (min-width: 768px) {
+  .booking-details-content {
+    flex-direction: row;
+    gap: 2rem;
+  }
+
+  .booking-details-content > div,
+  .booking-details-content > section {
+    flex: 1;
+  }
+}

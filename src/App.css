@@ -62,7 +62,8 @@ p {
   margin: 0;
 }
 
-b {
+b,
+strong {
   font-weight: var(--font-primary-weight-bold);
 }
 

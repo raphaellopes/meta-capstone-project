@@ -1,5 +1,6 @@
 import PageContainer from "@components/page-container";
 import Button from "@components/button";
+import BookingInfo from "@components/booking-info";
 import styles from "./styles.module.css";
 
 interface BookingConfirmationProps {
@@ -15,24 +16,27 @@ const BookingConfirmation: React.FC<BookingConfirmationProps> = ({
   return (
     <PageContainer id="booking-confirmation" title="Booking confirmed">
       <div className={styles.bookingDetails}>
-        <p>
-          Your booking has been confirmed. You will receive an email with the
-          details.
-        </p>
-        <ul className={styles.bookingDetailsList}>
-          <li>
-            <b>Date:</b> {booking.date}
-          </li>
-          <li>
-            <b>Time:</b> {booking.time}
-          </li>
-          <li>
-            <b>Number of guests:</b> {booking.guests}
-          </li>
-          <li>
-            <b>Occasion:</b> {booking.occasion}
-          </li>
-        </ul>
+        <div className={styles.bookingDetailsContent}>
+          <div>
+            <p>
+              Thanks for your booking <strong>{booking.fullName}</strong>. Your
+              booking has been confirmed and you will receive an email on{" "}
+              <strong>{booking.email}</strong> with the details.
+            </p>
+            {!!booking.phone && (
+              <p>
+                You will also receive a text message on{" "}
+                <strong>{booking.phone}</strong>.
+              </p>
+            )}
+          </div>
+          <BookingInfo
+            date={booking.date}
+            time={booking.time}
+            guests={booking.guests}
+            occasion={booking.occasion}
+          />
+        </div>
         <div>
           <Button onClick={onClickButton}>Back to home</Button>
         </div>
