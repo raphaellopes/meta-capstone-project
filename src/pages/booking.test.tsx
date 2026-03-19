@@ -36,40 +36,66 @@ describe("BookingPage", () => {
     expect(screen.getByText("Occasion:")).toBeInTheDocument();
   });
 
-  it("should submit the booking form", async () => {
-    vi.spyOn(api, "fetchAPI").mockReturnValue(["18:00"]);
-    const submitAPISpy = vi.spyOn(api, "submitAPI").mockReturnValue(true);
+  describe("submit booking form", () => {
+    beforeEach(() => {
+      vi.spyOn(api, "fetchAPI").mockReturnValue(["18:00"]);
+      renderBookingPage();
+    });
 
-    renderBookingPage();
+    const fillBookingForm = () => {
+      const dateInput = screen.getByLabelText("Choose date:");
+      fireEvent.change(dateInput, {
+        target: { value: "2026-03-17" },
+      });
+      const timeInput = screen.getByLabelText("Choose time:");
+      fireEvent.change(timeInput, {
+        target: { value: "18:00" },
+      });
+      const guestsInput = screen.getByLabelText("Number of guests:");
+      fireEvent.change(guestsInput, {
+        target: { value: "2" },
+      });
+      const occasionInput = screen.getByLabelText("Occasion:");
+      fireEvent.change(occasionInput, {
+        target: { value: "birthday" },
+      });
+    };
 
-    const dateInput = screen.getByLabelText("Choose date:");
-    fireEvent.change(dateInput, {
-      target: { value: "2026-03-17" },
-    });
-    const timeInput = screen.getByLabelText("Choose time:");
-    fireEvent.change(timeInput, {
-      target: { value: "18:00" },
-    });
-    const guestsInput = screen.getByLabelText("Number of guests:");
-    fireEvent.change(guestsInput, {
-      target: { value: "2" },
-    });
-    const occasionInput = screen.getByLabelText("Occasion:");
-    fireEvent.change(occasionInput, {
-      target: { value: "birthday" },
-    });
-    const submitButton = screen.getByText("Make your reservation");
-    fireEvent.click(submitButton);
+    it("should submit the booking form", async () => {
+      const submitAPISpy = vi.spyOn(api, "submitAPI").mockReturnValue(true);
 
-    await waitFor(() => {
-      expect(submitAPISpy).toHaveBeenCalledWith(
-        expect.objectContaining({
-          date: "2026-03-17",
-          time: "18:00",
-          guests: 2,
-          occasion: "birthday",
-        })
-      );
+      fillBookingForm();
+      const submitButton = screen.getByText("Make your reservation");
+      fireEvent.click(submitButton);
+
+      await waitFor(() => {
+        expect(submitAPISpy).toHaveBeenCalledWith(
+          expect.objectContaining({
+            date: "2026-03-17",
+            time: "18:00",
+            guests: 2,
+            occasion: "birthday",
+          })
+        );
+      });
+    });
+
+    it("should contain the booking data in the session storage", async () => {
+      fillBookingForm();
+      const submitButton = screen.getByText("Make your reservation");
+      fireEvent.click(submitButton);
+
+      await waitFor(() => {
+        expect(sessionStorage.getItem("booking-data")).toBeTruthy();
+        expect(sessionStorage.getItem("booking-data")).toEqual(
+          JSON.stringify({
+            date: "2026-03-17",
+            time: "18:00",
+            guests: 2,
+            occasion: "birthday",
+          })
+        );
+      });
     });
   });
 
