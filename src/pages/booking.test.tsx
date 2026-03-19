@@ -151,10 +151,10 @@ describe("BookingPage", () => {
       });
     });
 
-    it("should return to step 1 when Back is clicked", async () => {
+    it("should return to step 1 when Edit is clicked", async () => {
       await goToStep2();
 
-      fireEvent.click(screen.getByRole("button", { name: /back/i }));
+      fireEvent.click(screen.getByRole("button", { name: /edit/i }));
 
       expect(screen.queryByText("Reservation details")).not.toBeInTheDocument();
       expect(
