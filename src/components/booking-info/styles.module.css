@@ -1,0 +1,34 @@
+.root {
+  padding: 1rem 1.25rem;
+  color: var(--secondary-light);
+  border-radius: 0.5rem;
+  background: var(--primary-base);
+}
+
+.title {
+  margin: 0 0 0.75rem;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.list {
+  display: grid;
+  gap: 0.5rem 1rem;
+  margin: 0;
+}
+
+.row {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 0.5rem 1rem;
+  align-items: baseline;
+}
+
+.term {
+  margin: 0;
+  font-weight: 600;
+}
+
+.description {
+  margin: 0;
+}

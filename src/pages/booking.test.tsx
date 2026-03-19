@@ -42,7 +42,7 @@ describe("BookingPage", () => {
       renderBookingPage();
     });
 
-    const fillBookingForm = () => {
+    const fillBookingFormStep1 = () => {
       const dateInput = screen.getByLabelText("Choose date:");
       fireEvent.change(dateInput, {
         target: { value: "2026-03-17" },
@@ -61,41 +61,105 @@ describe("BookingPage", () => {
       });
     };
 
-    it("should submit the booking form", async () => {
+    const goToStep2 = async () => {
+      fillBookingFormStep1();
+      fireEvent.click(screen.getByRole("button", { name: /continue/i }));
+      await waitFor(() => {
+        expect(screen.getByText("Reservation details")).toBeInTheDocument();
+      });
+    };
+
+    const fillContactStep = () => {
+      fireEvent.change(screen.getByLabelText("Full name"), {
+        target: { value: "Jane Doe" },
+      });
+      fireEvent.change(screen.getByLabelText("Email"), {
+        target: { value: "jane@example.com" },
+      });
+    };
+
+    const expectedPayload = {
+      date: "2026-03-17",
+      time: "18:00",
+      guests: 2,
+      occasion: "birthday",
+      fullName: "Jane Doe",
+      email: "jane@example.com",
+      phone: "",
+    };
+
+    it("should submit the booking form with all steps", async () => {
       const submitAPISpy = vi.spyOn(api, "submitAPI").mockReturnValue(true);
 
-      fillBookingForm();
-      const submitButton = screen.getByText("Make your reservation");
+      await goToStep2();
+      fillContactStep();
+
+      const submitButton = screen.getByRole("button", {
+        name: /make your reservation/i,
+      });
       fireEvent.click(submitButton);
 
       await waitFor(() => {
         expect(submitAPISpy).toHaveBeenCalledWith(
-          expect.objectContaining({
-            date: "2026-03-17",
-            time: "18:00",
-            guests: 2,
-            occasion: "birthday",
-          })
+          expect.objectContaining(expectedPayload)
         );
       });
     });
 
     it("should contain the booking data in the session storage", async () => {
-      fillBookingForm();
-      const submitButton = screen.getByText("Make your reservation");
+      await goToStep2();
+      fillContactStep();
+
+      const submitButton = screen.getByRole("button", {
+        name: /make your reservation/i,
+      });
       fireEvent.click(submitButton);
 
       await waitFor(() => {
         expect(sessionStorage.getItem("booking-data")).toBeTruthy();
         expect(sessionStorage.getItem("booking-data")).toEqual(
-          JSON.stringify({
-            date: "2026-03-17",
-            time: "18:00",
-            guests: 2,
-            occasion: "birthday",
+          JSON.stringify(expectedPayload)
+        );
+      });
+    });
+
+    it("should include optional phone when provided", async () => {
+      const submitAPISpy = vi.spyOn(api, "submitAPI").mockReturnValue(true);
+
+      await goToStep2();
+      fireEvent.change(screen.getByLabelText("Full name"), {
+        target: { value: "Jane Doe" },
+      });
+      fireEvent.change(screen.getByLabelText("Email"), {
+        target: { value: "jane@example.com" },
+      });
+      fireEvent.change(screen.getByLabelText("Phone"), {
+        target: { value: "555-0100" },
+      });
+
+      fireEvent.click(
+        screen.getByRole("button", { name: /make your reservation/i })
+      );
+
+      await waitFor(() => {
+        expect(submitAPISpy).toHaveBeenCalledWith(
+          expect.objectContaining({
+            ...expectedPayload,
+            phone: "555-0100",
           })
         );
       });
+    });
+
+    it("should return to step 1 when Back is clicked", async () => {
+      await goToStep2();
+
+      fireEvent.click(screen.getByRole("button", { name: /back/i }));
+
+      expect(screen.queryByText("Reservation details")).not.toBeInTheDocument();
+      expect(
+        screen.getByRole("button", { name: /continue/i })
+      ).toBeInTheDocument();
     });
   });
 
@@ -158,6 +222,51 @@ describe("BookingPage", () => {
       fireEvent.blur(occasionInput);
       const occasionError = await screen.findByText("Occasion is required");
       expect(occasionError).toBeInTheDocument();
+    });
+  });
+
+  describe("Contact step validation", () => {
+    beforeEach(async () => {
+      vi.spyOn(api, "fetchAPI").mockReturnValue(["18:00"]);
+      renderBookingPage();
+      fireEvent.change(screen.getByLabelText("Choose date:"), {
+        target: { value: "2026-03-17" },
+      });
+      fireEvent.change(screen.getByLabelText("Choose time:"), {
+        target: { value: "18:00" },
+      });
+      fireEvent.change(screen.getByLabelText("Number of guests:"), {
+        target: { value: "2" },
+      });
+      fireEvent.change(screen.getByLabelText("Occasion:"), {
+        target: { value: "birthday" },
+      });
+      fireEvent.click(screen.getByRole("button", { name: /continue/i }));
+      await waitFor(() => {
+        expect(screen.getByText("Reservation details")).toBeInTheDocument();
+      });
+    });
+
+    it("should validate the full name field", async () => {
+      const nameInput = screen.getByLabelText("Full name");
+      fireEvent.change(nameInput, { target: { value: "" } });
+      fireEvent.blur(nameInput);
+      expect(
+        await screen.findByText("Full name is required")
+      ).toBeInTheDocument();
+    });
+
+    it("should validate the email field", async () => {
+      const emailInput = screen.getByLabelText("Email");
+      fireEvent.change(emailInput, { target: { value: "" } });
+      fireEvent.blur(emailInput);
+      expect(await screen.findByText("Email is required")).toBeInTheDocument();
+
+      fireEvent.change(emailInput, { target: { value: "not-an-email" } });
+      fireEvent.blur(emailInput);
+      expect(
+        await screen.findByText("Enter a valid email")
+      ).toBeInTheDocument();
     });
   });
 });

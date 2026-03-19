@@ -1,4 +1,4 @@
-import { useReducer } from "react";
+import { useCallback, useReducer } from "react";
 import { useNavigate } from "react-router-dom";
 import { fetchAPI, submitAPI } from "@lib/api";
 import {
@@ -27,9 +27,10 @@ const BookingPage = () => {
     action: { type: string; payload: string }
   ) => {
     switch (action.type) {
-      case "SET_AVAILABLE_TIMES":
+      case "SET_AVAILABLE_TIMES": {
         const times = handleGetBookingData(new Date(action.payload));
         return times;
+      }
       default:
         return state;
     }
@@ -45,12 +46,14 @@ const BookingPage = () => {
 
   const [availableTimes, dispatch] = useReducer(updateTimes, initializeTimes());
 
+  const onDateChange = useCallback((date: string) => {
+    dispatch({ type: "SET_AVAILABLE_TIMES", payload: date });
+  }, []);
+
   return (
     <BookingSection
       availableTimes={availableTimes}
-      onDateChange={(date) =>
-        dispatch({ type: "SET_AVAILABLE_TIMES", payload: date })
-      }
+      onDateChange={onDateChange}
       onSubmit={handleSubmitBooking}
     />
   );
